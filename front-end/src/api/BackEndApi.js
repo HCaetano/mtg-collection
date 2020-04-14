@@ -7,5 +7,6 @@ export default class CallApi {
       })
     }
 
-    getAllCards = ( params ) => axios.get( `http://localhost:8080/api/cards` );
+    getAllCards = () => axios.get( `http://localhost:8080/api/cards` );
+    insertNewCard = ( card ) => axios.post( `http://localhost:8080/api/cards`, card );
 }
