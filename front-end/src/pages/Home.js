@@ -18,7 +18,20 @@ export default class Home extends Component {
         })
     }
 
-    insertNewCard = ( card ) => {
+    insertNewCard = ( event ) => {
+        event.preventDefault()
+
+        const card = {
+            name: event.target[0].value,
+            manaCost: event.target[1].value,
+            cmc: event.target[2].value,
+            typeLine: event.target[3].value,
+            oracleText: event.target[4].value,
+            colors: event.target[5].value,
+            magicSetName: event.target[6].value,
+            rarity: event.target[7].value
+        }
+        
        this.backEndApi.insertNewCard( card );
     }
 
@@ -28,44 +41,50 @@ export default class Home extends Component {
 
     render() {
         const { cards } = this.state;
-
+        
         return (
             <div className="App">
-                <ul>
-                    { 
-                        cards.map( card => 
-                            <React.Fragment key={ card.id }>
+                <h1>Card gallery</h1>
+                { 
+                    cards.length > 0 
+                    ? cards.map( card => 
+                        <React.Fragment key={ card.id }>
+                            <ul>
                                 <li>{ card.name }</li>
                                 <li>{ card.manaCost }</li>
+                                <li>{ card.cmc }</li>
                                 <li>{ card.typeLine }</li>
                                 <li>{ card.oracleText }</li>
                                 <li>{ card.colors }</li>
                                 <li>{ card.magicSetName }</li>
                                 <li>{ card.rarity }</li>
-                            </React.Fragment>
-                        ) 
-                    }
-                </ul>
-                <form>
-                    { 
-                        cards.map( card => 
-                            <React.Fragment key={ card.id }>
-                                <input type="text" defaultValue={ card.name } />
-                                <input type="text" defaultValue={ card.manaCost } />
-                                <input type="text" defaultValue={ card.typeLine } />
-                                <input type="text" defaultValue={ card.oracleText } />
-                                <input type="text" defaultValue={ card.colors } />
-                                <input type="text" defaultValue={ card.magicSetName } />
-                                <input type="text" defaultValue={ card.rarity } />
-                            </React.Fragment>
-                        ) 
-                    }
+                            </ul>
+                        </React.Fragment>
+                    ) 
+                    : "There are no cards to show." 
+                }
 
-                    <input name="add-new-card" 
-                           type="submit" 
-                           onClick={ this.insertNewCard }
-                           value="Add card to collection" />
-                </form>
+                <h2>Add a card to database</h2>
+                { 
+                    cards.length > 0 
+                    ?   <form onSubmit={ this.insertNewCard }>
+                            <React.Fragment>
+                                <input type="text" defaultValue={ cards[0].name } />
+                                <input type="text" defaultValue={ cards[0].manaCost } />
+                                <input type="text" defaultValue={ cards[0].cmc } />
+                                <input type="text" defaultValue={ cards[0].typeLine } />
+                                <input type="text" defaultValue={ cards[0].oracleText } />
+                                <input type="text" defaultValue={ cards[0].colors } />
+                                <input type="text" defaultValue={ cards[0].magicSetName } />
+                                <input type="text" defaultValue={ cards[0].rarity } />
+                            </React.Fragment>
+                            <input name="add-new-card" 
+                                type="submit" 
+                                value="Add card to collection" />
+                        </form>
+                    
+                    : "There are no cards to show." 
+                }
             </div>
         )
     }
