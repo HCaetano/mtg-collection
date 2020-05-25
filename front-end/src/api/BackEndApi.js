@@ -11,6 +11,10 @@ export default class CallApi {
 
     insertNewCard = ( card ) => {
       axios.post( `http://localhost:8080/api/cards`, card )
-        .then(response => console.log(response));
+    }
+
+    findCardById = ( id ) => {
+      
+      axios.get( `http://localhost:8080/api/cards/${ id }` )
     }
 }

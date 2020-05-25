@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import BackEndApi from '../api/BackEndApi';
+import * as axios from 'axios';
 
 export default class Home extends Component {
     constructor( props ) {
@@ -8,6 +9,11 @@ export default class Home extends Component {
         this.state = {
             cards: []
         }
+
+        this.api = axios.create({
+            baseURL: "http://localhost:8080"
+          })
+
     }
 
     getAllCards = async () => {
@@ -33,6 +39,25 @@ export default class Home extends Component {
         }
         
        this.backEndApi.insertNewCard( card );
+    }
+
+    findCardById = ( event ) => {
+        event.preventDefault()
+        event.persist();
+
+        let card = this.backEndApi.findCardById( event.target[0].value )
+            .then(response => card = response.data)
+            .catch(error => console.log(error));
+
+            // assim funciona
+            // await axios.get( `http://localhost:8080/api/cards/${ event.target[0].value }` )
+            //     .then(response => {
+            //         console.log("no then")
+            //         promise = response
+            //         card = promise.data
+            //     }
+            // )
+
     }
 
     componentDidMount() {
@@ -63,6 +88,13 @@ export default class Home extends Component {
                     ) 
                     : "There are no cards to show." 
                 }
+
+                <h2>Find a card using its id</h2>
+
+                <form onSubmit={ this.findCardById }>
+                    <input type="text" placeholder="Type the card's id" name="search" />
+                    <input type="submit" name="find-card" value="Find card"/>
+                </form>
 
                 <h2>Add a card to database</h2>
                 { 
