@@ -1,20 +1,15 @@
 import * as axios from 'axios';
 
-export default class CallApi {
+export default class BackEndApi {
     constructor() {
-      this.api = axios.create({
+      this.axios = axios.create({
         baseURL: "http://localhost:8080"
       })
     }
 
-    getAllCards = () => axios.get( `http://localhost:8080/api/cards` );
+    getAllCards = () => this.axios.get( `/api/cards` );
 
-    insertNewCard = ( card ) => {
-      axios.post( `http://localhost:8080/api/cards`, card )
-    }
+    insertNewCard = ( card ) => this.axios.post( `/api/cards`, card );
 
-    findCardById = ( id ) => {
-      
-      axios.get( `http://localhost:8080/api/cards/${ id }` )
-    }
+    findCardById = ( id ) => this.axios.get( `/api/cards/${ id }` );
 }
