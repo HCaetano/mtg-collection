@@ -1,63 +1,53 @@
 import React, { Component } from 'react';
 import BackEndApi from '../api/BackEndApi';
-import * as axios from 'axios';
 
 export default class Home extends Component {
     constructor( props ) {
         super( props );
         this.backEndApi = new BackEndApi();
         this.state = {
-            cards: []
+            cardList: [],
+            card: {}
         }
-
-        this.api = axios.create({
-            baseURL: "http://localhost:8080"
-          })
-
     }
 
     getAllCards = async () => {
         const response = await this.backEndApi.getAllCards();
 
         this.setState({
-            cards: response.data
+            cardList: response.data
         })
     }
 
     insertNewCard = ( event ) => {
         event.preventDefault()
 
-        const card = {
-            name: event.target[0].value,
-            manaCost: event.target[1].value,
-            cmc: event.target[2].value,
-            typeLine: event.target[3].value,
-            oracleText: event.target[4].value,
-            colors: event.target[5].value,
-            magicSetName: event.target[6].value,
-            rarity: event.target[7].value
-        }
-        
-       this.backEndApi.insertNewCard( card );
+        this.setState({
+            card: {
+                name: event.target[0].value,
+                manaCost: event.target[1].value,
+                cmc: event.target[2].value,
+                typeLine: event.target[3].value,
+                oracleText: event.target[4].value,
+                colors: event.target[5].value,
+                magicSetName: event.target[6].value,
+                rarity: event.target[7].value
+            }
+        }, () => {
+            this.backEndApi.insertNewCard( this.state.card )
+        })
     }
 
     findCardById = ( event ) => {
         event.preventDefault()
         event.persist();
 
-        let card = this.backEndApi.findCardById( event.target[0].value )
-            .then(response => card = response.data)
-            .catch(error => console.log(error));
-
-            // assim funciona
-            // await axios.get( `http://localhost:8080/api/cards/${ event.target[0].value }` )
-            //     .then(response => {
-            //         console.log("no then")
-            //         promise = response
-            //         card = promise.data
-            //     }
-            // )
-
+        this.backEndApi.findCardById( event.target[0].value )
+            .then(response => {
+                this.setState({
+                    card: response.data
+                })
+            })
     }
 
     componentDidMount() {
@@ -65,14 +55,14 @@ export default class Home extends Component {
     }
 
     render() {
-        const { cards } = this.state;
+        const { cardList } = this.state;
         
         return (
             <div className="App">
                 <h1>Card gallery</h1>
                 { 
-                    cards.length > 0 
-                    ? cards.map( card => 
+                    cardList.length > 0 
+                    ? cardList.map( card => 
                         <React.Fragment key={ card.id }>
                             <ul>
                                 <li>{ card.name }</li>
@@ -98,23 +88,22 @@ export default class Home extends Component {
 
                 <h2>Add a card to database</h2>
                 { 
-                    cards.length > 0 
+                    cardList.length > 0 
                     ?   <form onSubmit={ this.insertNewCard }>
                             <React.Fragment>
-                                <input type="text" defaultValue={ cards[0].name } />
-                                <input type="text" defaultValue={ cards[0].manaCost } />
-                                <input type="text" defaultValue={ cards[0].cmc } />
-                                <input type="text" defaultValue={ cards[0].typeLine } />
-                                <input type="text" defaultValue={ cards[0].oracleText } />
-                                <input type="text" defaultValue={ cards[0].colors } />
-                                <input type="text" defaultValue={ cards[0].magicSetName } />
-                                <input type="text" defaultValue={ cards[0].rarity } />
+                                <input type="text" defaultValue={ cardList[0].name } />
+                                <input type="text" defaultValue={ cardList[0].manaCost } />
+                                <input type="text" defaultValue={ cardList[0].cmc } />
+                                <input type="text" defaultValue={ cardList[0].typeLine } />
+                                <input type="text" defaultValue={ cardList[0].oracleText } />
+                                <input type="text" defaultValue={ cardList[0].colors } />
+                                <input type="text" defaultValue={ cardList[0].magicSetName } />
+                                <input type="text" defaultValue={ cardList[0].rarity } />
                             </React.Fragment>
                             <input name="add-new-card" 
                                 type="submit" 
                                 value="Add card to collection" />
                         </form>
-                    
                     : "There are no cards to show." 
                 }
             </div>
