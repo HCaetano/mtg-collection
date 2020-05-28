@@ -35,6 +35,9 @@ export default class Home extends Component {
             }
         }, () => {
             this.backEndApi.insertNewCard( this.state.card )
+                .then( () => 
+                    this.getAllCards()
+                )
         })
     }
 
@@ -112,7 +115,21 @@ export default class Home extends Component {
                                 type="submit" 
                                 value="Add card to collection" />
                         </form>
-                    : "There are no cards to show." 
+                    :   <form onSubmit={ this.insertNewCard }>
+                            <React.Fragment>
+                                <input type="text" defaultValue={ 'Name' } />
+                                <input type="text" defaultValue={ 'Mana cost' } />
+                                <input type="text" defaultValue={ 'CMC' } />
+                                <input type="text" defaultValue={ 'Type line' } />
+                                <input type="text" defaultValue={ 'Oracle text' } />
+                                <input type="text" defaultValue={ 'Colors' } />
+                                <input type="text" defaultValue={ 'Set name' } />
+                                <input type="text" defaultValue={ 'Rarity' } />
+                            </React.Fragment>
+                            <input name="add-new-card" 
+                                type="submit" 
+                                value="Add card to collection" />
+                        </form>
                 }
             </div>
         )
