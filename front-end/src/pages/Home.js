@@ -38,12 +38,19 @@ export default class Home extends Component {
         })
     }
 
+    deleteCard = ( event ) => {
+        this.backEndApi.deleteCard( event.target.value )
+            .then( () => 
+                this.getAllCards()
+            )
+    }
+
     findCardById = ( event ) => {
         event.preventDefault()
         event.persist();
 
         this.backEndApi.findCardById( event.target[0].value )
-            .then(response => {
+            .then( response => {
                 this.setState({
                     card: response.data
                 })
@@ -73,6 +80,7 @@ export default class Home extends Component {
                                 <li>{ card.colors }</li>
                                 <li>{ card.magicSetName }</li>
                                 <li>{ card.rarity }</li>
+                                <button onClick={ this.deleteCard } value={ card.id }>Remover</button>
                             </ul>
                         </React.Fragment>
                     ) 

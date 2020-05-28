@@ -11,5 +11,7 @@ export default class BackEndApi {
 
     insertNewCard = ( card ) => this.axios.post( `/api/cards`, card );
 
+    deleteCard = ( id ) => this.axios.delete( `/api/cards/${ id }` )
+
     findCardById = ( id ) => this.axios.get( `/api/cards/${ id }` );
 }
