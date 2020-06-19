@@ -7,7 +7,8 @@ export default class Home extends Component {
         this.backEndApi = new BackEndApi();
         this.state = {
             cardList: [],
-            card: {}
+            card: {},
+            newCard: {}
         }
     }
 
@@ -23,7 +24,7 @@ export default class Home extends Component {
         event.preventDefault()
 
         this.setState({
-            card: {
+            newCard: {
                 name: event.target[0].value,
                 manaCost: event.target[1].value,
                 cmc: event.target[2].value,
@@ -34,9 +35,9 @@ export default class Home extends Component {
                 rarity: event.target[7].value
             }
         }, () => {
-            this.backEndApi.insertNewCard( this.state.card )
+            this.backEndApi.insertNewCard( this.state.newCard )
                 .then( () => this.setState({
-                    card: {}
+                    newCard: {}
                 }))
                 .then( () => 
                     this.getAllCards()
@@ -117,38 +118,19 @@ export default class Home extends Component {
                                 <li>{ card.colors }</li>
                                 <li>{ card.magicSetName }</li>
                                 <li>{ card.rarity }</li>
-                                <button onClick={ this.deleteCard } value={ card.id }>Remover</button>
+                                <button onClick={ this.deleteCard } value={ card.id }>Delete</button>
                             </ul>
                         </React.Fragment>
                     ) 
                     : "There are no cards to show." 
                 }
 
-                <h2>Find a card using its id</h2>
+                <h2>Find a card in the database by its id</h2>
 
                 <form>
                     <input type="text" placeholder="Type the card's id" name="search" onBlur={ this.updateCardId } />
                     <input type="button" name="find-card" value="Find card" onClick={ this.findCardById }/>
                 </form>
-
-                <h2>Add a card to database</h2>
-                { 
-                    <form onSubmit={ this.insertNewCard }>
-                        <React.Fragment>
-                            <input type="text" placeholder="Name" defaultValue={ '' }/>
-                            <input type="text" placeholder="Mana cost" defaultValue={ '' } />
-                            <input type="text" placeholder="CMC" defaultValue={ '' } />
-                            <input type="text" placeholder="Type line" defaultValue={ '' } />
-                            <input type="text" placeholder="Oracle text" defaultValue={ '' } />
-                            <input type="text" placeholder="Colors" defaultValue={ '' } />
-                            <input type="text" placeholder="Set name" defaultValue={ '' } />
-                            <input type="text" placeholder="Rarity" defaultValue={ '' } />
-                        </React.Fragment>
-                        <input name="add-new-card" 
-                            type="submit" 
-                            value="Add card to collection" />
-                    </form>
-                }
 
                 <h2>Edit a card from the database</h2>
                 { 
