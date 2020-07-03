@@ -12,3 +12,10 @@
     * CRUD functions for "Card" on the front end.
     * README file.
     * Basic CORS configuration to allow requests from front end.
+    
+## 0.3.0
+### Release date: 2020-07-03
+#### Added
+    * ScryFall API handler.
+    * findRandomCard function.
+    * Form to render the random card on the screen and save it to the database.
