@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import * as backEndApi from '../api/BackEndApi';
 import * as scryFallApi from '../api/ScryFallApi';
+import Card from '../components/Card';
 
 export default class Home extends Component {
   constructor() {
@@ -93,19 +94,19 @@ export default class Home extends Component {
 
     scryFallApi.findRandomCard()
       .then(response => {
-        this.setState({
-          randomCard: {
-            name: response.data.name,
-            manaCost: response.data.mana_cost,
-            cmc: response.data.cmc,
-            typeLine: response.data.type_line,
-            oracleText: response.data.oracle_text,
-            colors: response.data.colors.toString(),
-            magicSetName: response.data.set_name,
-            rarity: response.data.rarity,
-            image: response.data.image_uris.small
-          }
-        })
+        const randomCard = {
+          name: response.data.name,
+          manaCost: response.data.mana_cost,
+          cmc: response.data.cmc,
+          typeLine: response.data.type_line,
+          oracleText: response.data.oracle_text,
+          colors: response.data.colors.toString(),
+          magicSetName: response.data.set_name,
+          rarity: response.data.rarity,
+          image: response.data.image_uris.small
+        };
+
+        this.setState({ randomCard });
       })
   }
 
@@ -172,30 +173,12 @@ export default class Home extends Component {
         }
 
         <h2>Show a random card from ScryFall</h2>
-
         <form>
           <input type="button" name="show-random-card" value="Show card" onClick={this.findRandomCard} />
         </form>
-
         {
           <form onSubmit={this.insertNewCard}>
-            <img src={randomCard.image} alt=""></img>
-            <label>Name:</label>
-            <input type="text" name="name" value={randomCard.name || ''} onChange={this.onChangeRandomCard} />
-            <label>Mana cost:</label>
-            <input type="text" name="manaCost" value={randomCard.manaCost || ''} onChange={this.onChangeRandomCard} />
-            <label>CMC:</label>
-            <input type="text" name="cmc" value={randomCard.cmc || ''} onChange={this.onChangeRandomCard} />
-            <label>Type line:</label>
-            <input type="text" name="typeLine" value={randomCard.typeLine || ''} onChange={this.onChangeRandomCard} />
-            <label>Oracle text:</label>
-            <input type="text" name="oracleText" value={randomCard.oracleText || ''} onChange={this.onChangeRandomCard} />
-            <label>Colors:</label>
-            <input type="text" name="colors" value={randomCard.colors || ''} onChange={this.onChangeRandomCard} />
-            <label>Magic set:</label>
-            <input type="text" name="magicSetName" value={randomCard.magicSetName || ''} onChange={this.onChangeRandomCard} />
-            <label>Rarity:</label>
-            <input type="text" name="rarity" value={randomCard.rarity || ''} onChange={this.onChangeRandomCard} />
+            <Card card={randomCard} onChange={this.onChange} />
             <input name="save-card"
               type="submit"
               value="Save" />
@@ -203,7 +186,6 @@ export default class Home extends Component {
         }
 
         <h2>Find a card in the database by its id</h2>
-
         <form>
           <input type="text" placeholder="Type the card's id" name="search" onBlur={this.updateCardId} />
           <input type="button" name="find-card" value="Find card" onClick={this.findCardById} />
@@ -212,22 +194,7 @@ export default class Home extends Component {
         <h2>Edit a card from the database</h2>
         {
           <form onSubmit={this.editCard}>
-            <label>Name:</label>
-            <input type="text" name="name" value={card.name || ''} onChange={this.onChange} />
-            <label>Mana cost:</label>
-            <input type="text" name="manaCost" value={card.manaCost || ''} onChange={this.onChange} />
-            <label>CMC:</label>
-            <input type="text" name="cmc" value={card.cmc || ''} onChange={this.onChange} />
-            <label>Type line:</label>
-            <input type="text" name="typeLine" value={card.typeLine || ''} onChange={this.onChange} />
-            <label>Oracle text:</label>
-            <input type="text" name="oracleText" value={card.oracleText || ''} onChange={this.onChange} />
-            <label>Colors:</label>
-            <input type="text" name="colors" value={card.colors || ''} onChange={this.onChange} />
-            <label>Magic set:</label>
-            <input type="text" name="magicSetName" value={card.magicSetName || ''} onChange={this.onChange} />
-            <label>Rarity:</label>
-            <input type="text" name="rarity" value={card.rarity || ''} onChange={this.onChange} />
+            <Card card={card} onChange={this.onChange} />
             <input name="edit-card"
               type="submit"
               value="Save modifications" />
