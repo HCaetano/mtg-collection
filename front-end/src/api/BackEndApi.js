@@ -25,3 +25,9 @@ export const insertNewCard = (card) => {
 
   return axios.post(`/api/cards`, card);
 }
+
+export const deleteCard = ( id ) => {
+  const axios = buildAxiosHandler();
+
+  return axios.delete(`/api/cards/${id}`);
+}
