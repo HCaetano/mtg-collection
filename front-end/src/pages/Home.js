@@ -14,6 +14,7 @@ export default class Home extends Component {
     }
 
     this.insertNewCard = this.insertNewCard.bind(this);
+    this.deleteCard = this.deleteCard.bind(this);
   }
 
   async getAllCards() {
@@ -49,12 +50,12 @@ export default class Home extends Component {
     })
   }
 
-  // deleteCard = (event) => {
-  //   backEndApi.deleteCard(event.target.value)
-  //     .then(() =>
-  //       this.getAllCards()
-  //     )
-  // }
+  deleteCard(event) {
+    backEndApi.deleteCard(event.target.value)
+      .then(() =>
+        this.getAllCards()
+      );
+  }
 
   // editCard = (event) => {
   //   event.preventDefault();
