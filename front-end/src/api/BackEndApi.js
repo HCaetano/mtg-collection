@@ -1,7 +1,5 @@
 import * as axiosHandler from 'axios';
 
-  // insertNewCard = ( card ) => this.axios.post( `/api/cards`, card );
-
   // deleteCard = ( id ) => this.axios.delete( `/api/cards/${ id }` );
 
   // editCard = ( id, card ) => this.axios.put(`/api/cards/${ id }`, card);
@@ -19,5 +17,11 @@ const buildAxiosHandler = () => {
 export const getAllCards = () => {
   const axios = buildAxiosHandler();
 
-  return axios.get( `/api/cards` );
+  return axios.get(`/api/cards`);
+}
+
+export const insertNewCard = (card) => {
+  const axios = buildAxiosHandler();
+
+  return axios.post(`/api/cards`, card);
 }
