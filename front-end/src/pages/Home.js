@@ -12,6 +12,8 @@ export default class Home extends Component {
       card: {},
       newCard: {}
     }
+
+    this.insertNewCard = this.insertNewCard.bind(this);
   }
 
   async getAllCards() {
@@ -22,7 +24,7 @@ export default class Home extends Component {
     });
   }
 
-  insertNewCard = (event) => {
+  insertNewCard(event) {
     event.preventDefault()
 
     this.setState({
