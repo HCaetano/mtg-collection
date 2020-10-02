@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from 'react';
 
-class Card extends Component {
+class CardForm extends Component {
   render() {
     const { card, onChange } = this.props;
 
@@ -28,4 +28,4 @@ class Card extends Component {
   }
 }
 
-export default Card;
+export default CardForm;

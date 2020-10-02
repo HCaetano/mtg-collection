@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import * as backEndApi from '../api/BackEndApi';
 import * as scryFallApi from '../api/ScryFallApi';
-import Card from '../components/Card';
+import CardForm from '../components/CardForm';
 
 export default class Home extends Component {
   constructor() {
@@ -178,7 +178,7 @@ export default class Home extends Component {
         </form>
         {
           <form onSubmit={this.insertNewCard}>
-            <Card card={randomCard} onChange={this.onChange} />
+            <CardForm card={randomCard} onChange={this.onChange} />
             <input name="save-card"
               type="submit"
               value="Save" />
@@ -194,7 +194,7 @@ export default class Home extends Component {
         <h2>Edit a card from the database</h2>
         {
           <form onSubmit={this.editCard}>
-            <Card card={card} onChange={this.onChange} />
+            <CardForm card={card} onChange={this.onChange} />
             <input name="edit-card"
               type="submit"
               value="Save modifications" />
