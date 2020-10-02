@@ -17,6 +17,10 @@ export default class Home extends Component {
     this.deleteCard = this.deleteCard.bind(this);
     this.findCardById = this.findCardById.bind(this);
     this.editCard = this.editCard.bind(this);
+    this.findRandomCard = this.findRandomCard.bind(this);
+    this.updateCardId = this.updateCardId.bind(this);
+    this.onChange = this.onChange.bind(this);
+    this.onChangeRandomCard = this.onChangeRandomCard.bind(this);
   }
 
   async getAllCards() {
@@ -49,7 +53,7 @@ export default class Home extends Component {
         .then(() =>
           this.getAllCards()
         )
-    })
+    });
   }
 
   deleteCard(event) {
@@ -83,7 +87,7 @@ export default class Home extends Component {
       });
   }
 
-  findRandomCard = (event) => {
+  findRandomCard(event) {
     event.preventDefault()
     event.persist();
 
@@ -105,13 +109,13 @@ export default class Home extends Component {
       })
   }
 
-  updateCardId = (event) => {
+  updateCardId(event) {
     this.setState({
       cardId: event.target.value
-    })
+    });
   }
 
-  onChange = (event) => {
+  onChange(event) {
     const target = event.target;
     const value = target.value;
     const name = target.name;
@@ -121,11 +125,10 @@ export default class Home extends Component {
         ...prevState.card,
         [name]: value
       }
-    })
-    )
+    }));
   }
 
-  onChangeRandomCard = (event) => {
+  onChangeRandomCard(event) {
     const target = event.target;
     const value = target.value;
     const name = target.name;
@@ -135,8 +138,7 @@ export default class Home extends Component {
         ...prevState.card,
         [name]: value
       }
-    })
-    )
+    }));
   }
 
   componentDidMount() {
