@@ -1,12 +1,10 @@
 import React, { Component } from 'react';
-import BackEndApi from '../api/BackEndApi';
+import * as backEndApi from '../api/BackEndApi';
 import * as scryFallApi from '../api/ScryFallApi';
 
 export default class Home extends Component {
   constructor() {
     super();
-
-    this.backEndApi = new BackEndApi();
 
     this.state = {
       cardList: [],
@@ -17,68 +15,68 @@ export default class Home extends Component {
   }
 
   async getAllCards() {
-    const response = await this.backEndApi.getAllCards();
+    const response = await backEndApi.getAllCards();
 
     this.setState({
       cardList: response.data
-    })
+    });
   }
 
-  insertNewCard = (event) => {
-    event.preventDefault()
+  // insertNewCard = (event) => {
+  //   event.preventDefault()
 
-    this.setState({
-      newCard: {
-        name: event.target[0].value,
-        manaCost: event.target[1].value,
-        cmc: event.target[2].value,
-        typeLine: event.target[3].value,
-        oracleText: event.target[4].value,
-        colors: event.target[5].value,
-        magicSetName: event.target[6].value,
-        rarity: event.target[7].value
-      }
-    }, () => {
-      this.backEndApi.insertNewCard(this.state.newCard)
-        .then(() => this.setState({
-          newCard: {}
-        }))
-        .then(() =>
-          this.getAllCards()
-        )
-    })
-  }
+  //   this.setState({
+  //     newCard: {
+  //       name: event.target[0].value,
+  //       manaCost: event.target[1].value,
+  //       cmc: event.target[2].value,
+  //       typeLine: event.target[3].value,
+  //       oracleText: event.target[4].value,
+  //       colors: event.target[5].value,
+  //       magicSetName: event.target[6].value,
+  //       rarity: event.target[7].value
+  //     }
+  //   }, () => {
+  //     backEndApi.insertNewCard(this.state.newCard)
+  //       .then(() => this.setState({
+  //         newCard: {}
+  //       }))
+  //       .then(() =>
+  //         this.getAllCards()
+  //       )
+  //   })
+  // }
 
-  deleteCard = (event) => {
-    this.backEndApi.deleteCard(event.target.value)
-      .then(() =>
-        this.getAllCards()
-      )
-  }
+  // deleteCard = (event) => {
+  //   backEndApi.deleteCard(event.target.value)
+  //     .then(() =>
+  //       this.getAllCards()
+  //     )
+  // }
 
-  editCard = (event) => {
-    event.preventDefault();
+  // editCard = (event) => {
+  //   event.preventDefault();
 
-    this.backEndApi.editCard(this.state.cardId, this.state.card)
-      .then(() => this.setState({
-        card: {}
-      }))
-      .then(() =>
-        this.getAllCards()
-      );
-  }
+  //   backEndApi.editCard(this.state.cardId, this.state.card)
+  //     .then(() => this.setState({
+  //       card: {}
+  //     }))
+  //     .then(() =>
+  //       this.getAllCards()
+  //     );
+  // }
 
-  findCardById = (event) => {
-    event.preventDefault()
-    event.persist();
+  // findCardById = (event) => {
+  //   event.preventDefault()
+  //   event.persist();
 
-    this.backEndApi.findCardById(this.state.cardId)
-      .then(response => {
-        this.setState({
-          card: response.data
-        })
-      })
-  }
+  //   backEndApi.findCardById(this.state.cardId)
+  //     .then(response => {
+  //       this.setState({
+  //         card: response.data
+  //       })
+  //     })
+  // }
 
   findRandomCard = (event) => {
     event.preventDefault()
