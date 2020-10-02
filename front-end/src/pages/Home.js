@@ -22,30 +22,30 @@ export default class Home extends Component {
     });
   }
 
-  // insertNewCard = (event) => {
-  //   event.preventDefault()
+  insertNewCard = (event) => {
+    event.preventDefault()
 
-  //   this.setState({
-  //     newCard: {
-  //       name: event.target[0].value,
-  //       manaCost: event.target[1].value,
-  //       cmc: event.target[2].value,
-  //       typeLine: event.target[3].value,
-  //       oracleText: event.target[4].value,
-  //       colors: event.target[5].value,
-  //       magicSetName: event.target[6].value,
-  //       rarity: event.target[7].value
-  //     }
-  //   }, () => {
-  //     backEndApi.insertNewCard(this.state.newCard)
-  //       .then(() => this.setState({
-  //         newCard: {}
-  //       }))
-  //       .then(() =>
-  //         this.getAllCards()
-  //       )
-  //   })
-  // }
+    this.setState({
+      newCard: {
+        name: event.target[0].value,
+        manaCost: event.target[1].value,
+        cmc: event.target[2].value,
+        typeLine: event.target[3].value,
+        oracleText: event.target[4].value,
+        colors: event.target[5].value,
+        magicSetName: event.target[6].value,
+        rarity: event.target[7].value
+      }
+    }, () => {
+      backEndApi.insertNewCard(this.state.newCard)
+        .then(() => this.setState({
+          newCard: {}
+        }))
+        .then(() =>
+          this.getAllCards()
+        )
+    })
+  }
 
   // deleteCard = (event) => {
   //   backEndApi.deleteCard(event.target.value)
