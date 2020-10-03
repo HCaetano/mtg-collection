@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import * as backEndApi from '../api/BackEndApi';
 import * as scryFallApi from '../api/ScryFallApi';
 import CardForm from '../components/CardForm';
-import Card from '../components/Card';
+import CardList from '../components/CardList';
 
 export default class Home extends Component {
   constructor() {
@@ -153,11 +153,7 @@ export default class Home extends Component {
     return (
       <div className="App">
         <h1>Card gallery</h1>
-        {
-          cardList.length > 0
-            ? cardList.map(card => <Card card={ card } />)
-            : "There are no cards to show."
-        }
+        <CardList cards={ cardList }/>
 
         <h2>Show a random card from ScryFall</h2>
         <form>
