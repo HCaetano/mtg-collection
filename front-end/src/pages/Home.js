@@ -159,14 +159,12 @@ export default class Home extends Component {
         <form>
           <input type="button" name="show-random-card" value="Show card" onClick={this.findRandomCard} />
         </form>
-        {
-          <form onSubmit={this.insertNewCard}>
-            <CardForm card={randomCard} onChange={this.onChange} />
-            <input name="save-card"
-              type="submit"
-              value="Save" />
-          </form>
-        }
+        <form onSubmit={this.insertNewCard}>
+          <CardForm card={randomCard} onChange={this.onChange} />
+          <input name="save-card"
+            type="submit"
+            value="Save" />
+        </form>
 
         <h2>Find a card in the database by its id</h2>
         <form>
@@ -175,14 +173,12 @@ export default class Home extends Component {
         </form>
 
         <h2>Edit a card from the database</h2>
-        {
-          <form onSubmit={this.editCard}>
-            <CardForm card={card} onChange={this.onChange} />
-            <input name="edit-card"
-              type="submit"
-              value="Save modifications" />
-          </form>
-        }
+        <form onSubmit={this.editCard}>
+          <CardForm card={card} onChange={this.onChange} />
+          <input name="edit-card"
+            type="submit"
+            value="Save modifications" />
+        </form>
       </div>
     )
   }
