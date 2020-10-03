@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import * as backEndApi from '../api/BackEndApi';
 import * as scryFallApi from '../api/ScryFallApi';
 import CardForm from '../components/CardForm';
+import Card from '../components/Card';
 
 export default class Home extends Component {
   constructor() {
@@ -154,21 +155,7 @@ export default class Home extends Component {
         <h1>Card gallery</h1>
         {
           cardList.length > 0
-            ? cardList.map(card =>
-              <React.Fragment key={card.id}>
-                <ul>
-                  <li>{card.name}</li>
-                  <li>{card.manaCost}</li>
-                  <li>{card.cmc}</li>
-                  <li>{card.typeLine}</li>
-                  <li>{card.oracleText}</li>
-                  <li>{card.colors}</li>
-                  <li>{card.magicSetName}</li>
-                  <li>{card.rarity}</li>
-                  <button onClick={this.deleteCard} value={card.id}>Delete</button>
-                </ul>
-              </React.Fragment>
-            )
+            ? cardList.map(card => <Card card={ card } />)
             : "There are no cards to show."
         }
 
