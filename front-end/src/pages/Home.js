@@ -12,8 +12,8 @@ export default class Home extends Component {
       cardList: [],
       randomCard: {},
       card: {},
-      newCard: {}
-    }
+      newCard: {},
+    };
 
     this.insertNewCard = this.insertNewCard.bind(this);
     this.deleteCard = this.deleteCard.bind(this);
@@ -25,16 +25,65 @@ export default class Home extends Component {
     this.onChangeRandomCard = this.onChangeRandomCard.bind(this);
   }
 
+  componentDidMount() {
+    // this.asyncRequest = this.getAllCards();
+  }
+
+  onChangeRandomCard(event) {
+    const target = event.target;
+    const value = target.value;
+    const name = target.name;
+
+    this.setState((prevState) => ({
+      randomCard: {
+        ...prevState.card,
+        [name]: value,
+      },
+    }));
+  }
+
+  onChange(event) {
+    const target = event.target;
+    const value = target.value;
+    const name = target.name;
+
+    this.setState((prevState) => ({
+      card: {
+        ...prevState.card,
+        [name]: value,
+      },
+    }));
+  }
+
   async getAllCards() {
     const response = await backEndApi.getAllCards();
 
-    this.setState({
-      cardList: response.data
-    });
+    this.setState({ cardList: response.data });
+  }
+
+  findCardById(event) {
+    event.preventDefault();
+    event.persist();
+
+    backEndApi.findCardById(this.state.cardId)
+      .then((response) => this.setState({ card: response.data }));
+  }
+
+  editCard(event) {
+    event.preventDefault();
+
+    backEndApi.editCard(this.state.cardId, this.state.card)
+      .then(() => this.setState({ card: {} }))
+      .then(() => this.getAllCards());
+  }
+
+  deleteCard(event) {
+    backEndApi.deleteCard(event.target.value)
+      .then(() => this.getAllCards());
   }
 
   insertNewCard(event) {
-    event.preventDefault()
+    event.preventDefault();
 
     this.setState({
       newCard: {
@@ -45,56 +94,21 @@ export default class Home extends Component {
         oracleText: event.target[4].value,
         colors: event.target[5].value,
         magicSetName: event.target[6].value,
-        rarity: event.target[7].value
-      }
+        rarity: event.target[7].value,
+      },
     }, () => {
       backEndApi.insertNewCard(this.state.newCard)
-        .then(() => this.setState({
-          newCard: {}
-        }))
-        .then(() =>
-          this.getAllCards()
-        )
+        .then(() => this.setState({ newCard: {} }))
+        .then(() => this.getAllCards());
     });
   }
 
-  deleteCard(event) {
-    backEndApi.deleteCard(event.target.value)
-      .then(() =>
-        this.getAllCards()
-      );
-  }
-
-  editCard(event) {
-    event.preventDefault();
-
-    backEndApi.editCard(this.state.cardId, this.state.card)
-      .then(() => this.setState({
-        card: {}
-      }))
-      .then(() =>
-        this.getAllCards()
-      );
-  }
-
-  findCardById(event) {
-    event.preventDefault()
-    event.persist();
-
-    backEndApi.findCardById(this.state.cardId)
-      .then(response => {
-        this.setState({
-          card: response.data
-        })
-      });
-  }
-
   findRandomCard(event) {
-    event.preventDefault()
+    event.preventDefault();
     event.persist();
 
     scryFallApi.findRandomCard()
-      .then(response => {
+      .then((response) => {
         const randomCard = {
           name: response.data.name,
           manaCost: response.data.mana_cost,
@@ -104,47 +118,15 @@ export default class Home extends Component {
           colors: response.data.colors.toString(),
           magicSetName: response.data.set_name,
           rarity: response.data.rarity,
-          image: response.data.image_uris.small
+          image: response.data.image_uris.small,
         };
 
         this.setState({ randomCard });
-      })
+      });
   }
 
   updateCardId(event) {
-    this.setState({
-      cardId: event.target.value
-    });
-  }
-
-  onChange(event) {
-    const target = event.target;
-    const value = target.value;
-    const name = target.name;
-
-    this.setState(prevState => ({
-      card: {
-        ...prevState.card,
-        [name]: value
-      }
-    }));
-  }
-
-  onChangeRandomCard(event) {
-    const target = event.target;
-    const value = target.value;
-    const name = target.name;
-
-    this.setState(prevState => ({
-      randomCard: {
-        ...prevState.card,
-        [name]: value
-      }
-    }));
-  }
-
-  componentDidMount() {
-    this._asyncRequest = this.getAllCards();
+    this.setState({ cardId: event.target.value });
   }
 
   render() {
@@ -153,33 +135,52 @@ export default class Home extends Component {
     return (
       <div className="App">
         <h1>Card gallery</h1>
-        <CardList cards={ cardList }/>
+        <CardList cards={cardList} />
 
         <h2>Show a random card from ScryFall</h2>
         <form>
-          <input type="button" name="show-random-card" value="Show card" onClick={this.findRandomCard} />
+          <input
+            type="button"
+            name="show-random-card"
+            value="Show card"
+            onClick={this.findRandomCard}
+          />
         </form>
         <form onSubmit={this.insertNewCard}>
           <CardForm card={randomCard} onChange={this.onChange} />
-          <input name="save-card"
+          <input
+            name="save-card"
             type="submit"
-            value="Save" />
+            value="Save"
+          />
         </form>
 
         <h2>Find a card in the database by its id</h2>
         <form>
-          <input type="text" placeholder="Type the card's id" name="search" onBlur={this.updateCardId} />
-          <input type="button" name="find-card" value="Find card" onClick={this.findCardById} />
+          <input
+            type="text"
+            placeholder="Type the card's id"
+            name="search"
+            onBlur={this.updateCardId}
+          />
+          <input
+            type="button"
+            name="find-card"
+            value="Find card"
+            onClick={this.findCardById}
+          />
         </form>
 
         <h2>Edit a card from the database</h2>
         <form onSubmit={this.editCard}>
           <CardForm card={card} onChange={this.onChange} />
-          <input name="edit-card"
+          <input
+            name="edit-card"
             type="submit"
-            value="Save modifications" />
+            value="Save modifications"
+          />
         </form>
       </div>
-    )
+    );
   }
 }

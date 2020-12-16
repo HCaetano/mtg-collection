@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import Card from '../components/Card';
 
 class CardList extends Component {
@@ -7,10 +8,14 @@ class CardList extends Component {
 
     return (
       cards.length > 0
-        ? cards.map(card => <Card card={ card } />)
-        : "There are no cards to show."
+        ? cards.map((card) => <Card card={card} />)
+        : 'There are no cards to show.'
     );
   }
 }
+
+CardList.propTypes = {
+  cards: PropTypes.arrayOf(PropTypes.shapeOf(PropTypes.string)).isRequired,
+};
 
 export default CardList;

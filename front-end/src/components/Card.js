@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import PropTypes from 'prop-types';
 class Card extends Component {
   render() {
     const { card } = this.props;
@@ -19,5 +19,9 @@ class Card extends Component {
     );
   }
 }
+
+Card.propTypes = {
+  card: PropTypes.shapeOf(PropTypes.string).isRequired,
+};
 
 export default Card;

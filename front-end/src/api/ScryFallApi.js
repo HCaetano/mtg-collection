@@ -1,9 +1,11 @@
 import * as axiosHandler from 'axios';
 
-export const findRandomCard = () => {
+const findRandomCard = () => {
   const axios = axiosHandler.create({
-    baseURL: "https://api.scryfall.com"
+    baseURL: 'https://api.scryfall.com',
   });
 
-  return axios.get(`/cards/random`);
-}
+  return axios.get('/cards/random');
+};
+
+export default findRandomCard;
