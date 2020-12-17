@@ -1,0 +1,17 @@
+{
+  "extends": "airbnb",
+  "rules": {
+    "no-console": "off",
+    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
+    "react/prefer-stateless-function": 0,
+    "arrow-parens": [2, "always"],
+    "class-methods-use-this": ["off"],
+    "jsx-a11y/label-has-associated-control": 0,
+    "react/destructuring-assignment": [0, "always"]
+  },
+    "env": {
+      "browser": true,
+      "node": true,
+      "jest": true
+    }
+}
