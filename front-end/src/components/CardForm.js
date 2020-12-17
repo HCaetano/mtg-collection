@@ -30,7 +30,7 @@ class CardForm extends Component {
 }
 
 CardForm.propTypes = {
-  card: PropTypes.shapeOf(PropTypes.string).isRequired,
+  card: PropTypes.shape(PropTypes.string).isRequired,
   onChange: PropTypes.func.isRequired,
 };
 

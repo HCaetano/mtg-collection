@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import * as backEndApi from '../api/BackEndApi';
-import * as scryFallApi from '../api/ScryFallApi';
+import scryFallApi from '../api/ScryFallApi';
 import CardForm from '../components/CardForm';
 import CardList from '../components/CardList';
 
@@ -12,7 +12,6 @@ export default class Home extends Component {
       cardList: [],
       randomCard: {},
       card: {},
-      newCard: {},
     };
 
     this.insertNewCard = this.insertNewCard.bind(this);
@@ -26,7 +25,7 @@ export default class Home extends Component {
   }
 
   componentDidMount() {
-    // this.asyncRequest = this.getAllCards();
+    this.asyncRequest = this.getAllCards();
   }
 
   onChangeRandomCard(event) {
@@ -86,7 +85,7 @@ export default class Home extends Component {
     event.preventDefault();
 
     this.setState({
-      newCard: {
+      card: {
         name: event.target[0].value,
         manaCost: event.target[1].value,
         cmc: event.target[2].value,
@@ -97,8 +96,8 @@ export default class Home extends Component {
         rarity: event.target[7].value,
       },
     }, () => {
-      backEndApi.insertNewCard(this.state.newCard)
-        .then(() => this.setState({ newCard: {} }))
+      backEndApi.insertNewCard(this.state.card)
+        .then(() => this.setState({ card: {} }))
         .then(() => this.getAllCards());
     });
   }
@@ -107,7 +106,7 @@ export default class Home extends Component {
     event.preventDefault();
     event.persist();
 
-    scryFallApi.findRandomCard()
+    scryFallApi()
       .then((response) => {
         const randomCard = {
           name: response.data.name,
@@ -135,7 +134,10 @@ export default class Home extends Component {
     return (
       <div className="App">
         <h1>Card gallery</h1>
-        <CardList cards={cardList} />
+        <CardList
+          cards={cardList}
+          deleteCard={this.deleteCard}
+        />
 
         <h2>Show a random card from ScryFall</h2>
         <form>

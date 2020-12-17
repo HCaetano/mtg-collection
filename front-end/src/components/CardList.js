@@ -4,18 +4,22 @@ import Card from '../components/Card';
 
 class CardList extends Component {
   render() {
-    const { cards } = this.props;
+    const { cards, deleteCard } = this.props;
 
     return (
       cards.length > 0
-        ? cards.map((card) => <Card card={card} />)
+        ? cards.map((card) => <Card
+            card={card}
+            key={card.id}
+            deleteCard={deleteCard}
+          />)
         : 'There are no cards to show.'
     );
   }
 }
 
 CardList.propTypes = {
-  cards: PropTypes.arrayOf(PropTypes.shapeOf(PropTypes.string)).isRequired,
+  cards: PropTypes.arrayOf(PropTypes.shape(PropTypes.string)).isRequired,
 };
 
 export default CardList;

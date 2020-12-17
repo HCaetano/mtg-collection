@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 class Card extends Component {
   render() {
-    const { card } = this.props;
+    const { card, deleteCard } = this.props;
 
     return (
       <article>
@@ -14,14 +14,14 @@ class Card extends Component {
         <p>{ card.colors }</p>
         <p>{ card.magicSetName }</p>
         <p>{ card.rarity }</p>
-        <button onClick={this.deleteCard} value={card.id}>Delete</button>
+        <button onClick={deleteCard} value={card.id}>Delete</button>
       </article>
     );
   }
 }
 
 Card.propTypes = {
-  card: PropTypes.shapeOf(PropTypes.string).isRequired,
+  card: PropTypes.shape(PropTypes.string).isRequired,
 };
 
 export default Card;
