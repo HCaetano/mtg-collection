@@ -1,19 +1,39 @@
-import * as axios from 'axios';
+import * as axiosHandler from 'axios';
 
-export default class BackEndApi {
-    constructor() {
-      this.axios = axios.create({
-        baseURL: "http://localhost:8080"
-      })
-    }
+const buildAxiosHandler = () => {
+  const axios = axiosHandler.create({
+    baseURL: 'http://localhost:8080',
+  });
 
-    getAllCards = () => this.axios.get( `/api/cards` );
+  return axios;
+};
 
-    insertNewCard = ( card ) => this.axios.post( `/api/cards`, card );
+export const getAllCards = () => {
+  const axios = buildAxiosHandler();
 
-    deleteCard = ( id ) => this.axios.delete( `/api/cards/${ id }` );
+  return axios.get('/api/cards');
+};
 
-    editCard = ( id, card ) => this.axios.put(`/api/cards/${ id }`, card);
+export const insertNewCard = (card) => {
+  const axios = buildAxiosHandler();
 
-    findCardById = ( id ) => this.axios.get( `/api/cards/${ id }` );
-}
+  return axios.post('/api/cards', card);
+};
+
+export const deleteCard = (id) => {
+  const axios = buildAxiosHandler();
+
+  return axios.delete(`/api/cards/${id}`);
+};
+
+export const findCardById = (id) => {
+  const axios = buildAxiosHandler();
+
+  return axios.get(`/api/cards/${id}`);
+};
+
+export const editCard = (id, card) => {
+  const axios = buildAxiosHandler();
+
+  return axios.put(`/api/cards/${id}`, card);
+};
