@@ -1,0 +1,20 @@
+body {
+  display: flex;
+}
+
+h1 {
+  align-content: center;
+}
+
+section {
+  border: 1px solid green;
+  display: flex;
+  flex-direction: column;
+  margin: 10px 0px;
+  padding: 10px;
+}
+
+.card-gallery {
+  flex-flow: column wrap;
+  justify-content: center;
+}
