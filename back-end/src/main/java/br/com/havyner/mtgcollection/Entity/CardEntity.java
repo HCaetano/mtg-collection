@@ -35,12 +35,16 @@ public class CardEntity {
     @Column(name = "rarity")
     private String rarity;
 
+    @Column(name = "image")
+    private String image;
+
     public CardEntity() {
 
     }
 
-    public CardEntity(String name, String manaCost, String cmc, String typeLine, String oracleText,
-                      String colors, String magicSetName, String rarity) {
+    public CardEntity(String name, String manaCost, String cmc, String typeLine, 
+        String oracleText, String colors, String magicSetName, String rarity,
+        String image) {
         this.name = name;
         this.manaCost = manaCost;
         this.cmc = cmc;
@@ -49,6 +53,7 @@ public class CardEntity {
         this.colors = colors;
         this.magicSetName = magicSetName;
         this.rarity = rarity;
+        this.image = image;
     }
 
     public Integer getId() {
@@ -121,5 +126,13 @@ public class CardEntity {
 
     public void setRarity(String rarity) {
         this.rarity = rarity;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 }
