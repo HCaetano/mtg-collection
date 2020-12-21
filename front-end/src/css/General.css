@@ -1,20 +1,40 @@
 body {
+  background-color: #eef1ef;
   display: flex;
+  margin: 0 auto;
+  width: 80%;
+}
+
+button {
+  width: 5em;
 }
 
 h1 {
-  align-content: center;
+  border: 5px solid #B29BFF;
+  font-size: xx-large;
+  text-align: center;
+}
+
+main, section {
+  box-sizing: border-box;
+  display: flex;
+  margin: 10px 0px;
+}
+
+main, h1, section {
+  padding: 10px;
+}
+
+main {
+  flex-flow: row wrap;
 }
 
 section {
-  border: 1px solid green;
-  display: flex;
   flex-direction: column;
-  margin: 10px 0px;
-  padding: 10px;
 }
 
 .card-gallery {
   flex-flow: column wrap;
   justify-content: center;
+  width: 100%;
 }

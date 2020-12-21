@@ -4,14 +4,18 @@ import scryFallApi from '../api/ScryFallApi';
 import CardForm from '../components/CardForm';
 import CardList from '../components/CardList';
 import '../css/Reset.css';
+import '../css/CardForm.css';
 import '../css/General.css';
+import '../css/Home.css';
 export default class Home extends Component {
   constructor() {
     super();
 
     this.state = {
       cardList: [],
-      randomCard: {},
+      randomCard: {
+        image: 'https://static.wikia.nocookie.net/mtgsalvation_gamepedia/images/f/f8/Magic_card_back.jpg/revision/latest/scale-to-width-down/250?cb=20140813141013'
+      },
       card: {},
     };
 
@@ -84,18 +88,19 @@ export default class Home extends Component {
 
   insertNewCard(event) {
     event.preventDefault();
+    const { target } = event;
 
     this.setState({
       card: {
-        name: event.target[0].value,
-        manaCost: event.target[1].value,
-        cmc: event.target[2].value,
-        typeLine: event.target[3].value,
-        oracleText: event.target[4].value,
-        colors: event.target[5].value,
-        magicSetName: event.target[6].value,
-        rarity: event.target[7].value,
-        image: event.target.innerHTML.split('src="')[1].split('">')[0],
+        name: target[0].value,
+        manaCost: target[1].value,
+        cmc: target[2].value,
+        typeLine: target[3].value,
+        oracleText: target[4].value,
+        colors: target[5].value,
+        magicSetName: target[6].value,
+        rarity: target[7].value,
+        image: target.innerHTML.split('src="')[1].split('">')[0],
       },
     }, () => {
       backEndApi.insertNewCard(this.state.card)
@@ -119,7 +124,7 @@ export default class Home extends Component {
           colors: response.data.colors.toString(),
           magicSetName: response.data.set_name,
           rarity: response.data.rarity,
-          image: response.data.image_uris.small,
+          image: response.data.image_uris.normal,
         };
 
         this.setState({ randomCard });
@@ -134,7 +139,7 @@ export default class Home extends Component {
     const { cardList, card, randomCard } = this.state;
 
     return (
-      <section>
+      <main>
         <section className="card-gallery">
         <h1>Card gallery</h1>
           <CardList
@@ -143,53 +148,60 @@ export default class Home extends Component {
           />
         </section>
         
-        <section>
-          <h2>Show a random card from ScryFall</h2>
-          <input
-            type="button"
-            name="show-random-card"
-            value="Show card"
-            onClick={this.findRandomCard}
-          />
-          <form onSubmit={this.insertNewCard}>
-            <CardForm card={randomCard} onChange={this.onChange} />
-            <input
-              name="save-card"
-              type="submit"
-              value="Save"
-            />
-          </form>
-        </section>
-
-        <section>
-          <h2>Find a card in the database by its id</h2>
-          <form>
-            <input
-              type="text"
-              placeholder="Type the card's id"
-              name="search"
-              onBlur={this.updateCardId}
-            />
+        <section className="card-actions">
+          <div className="card-actions-top">
+            <h2>Show a random card from ScryFall</h2>
             <input
               type="button"
-              name="find-card"
-              value="Find card"
-              onClick={this.findCardById}
+              name="show-random-card"
+              value="Show card"
+              onClick={this.findRandomCard}
             />
-          </form>
-
-          <h2>Edit a card from the database</h2>
-          <form onSubmit={this.editCard}>
-            <CardForm card={card} onChange={this.onChange} />
-            <input
-              name="edit-card"
-              type="submit"
-              value="Save modifications"
-            />
+          </div>
+          <form onSubmit={this.insertNewCard}>
+            <CardForm card={randomCard} onChange={this.onChange} />
+            <div className="button-position">
+              <input
+                name="save-card"
+                type="submit"
+                value="Save"
+              />
+            </div>
           </form>
         </section>
+
+        {/* <section className="card-actions">
+          <div className="card-actions-top">
+            <h2>Edit a card from the database</h2>
+            <form>
+              <input
+                type="text"
+                placeholder="Type the card's id"
+                name="search"
+                onBlur={this.updateCardId}
+              />
+              <input
+                name="find-card"
+                type="submit"
+                value="Find card"
+                onClick={this.findCardById}
+              />
+            </form>
+          </div>
+
+          <form onSubmit={this.editCard}>
+            <CardForm card={card} onChange={this.onChange} />
+            <div className="button-position">
+              <input
+                name="edit-card"
+                type="submit"
+                value="Save modifications"
+              />
+            </div>
+          </form>
+        </section> */}
         
-      </section>
+      </main>
     );
   }
 }

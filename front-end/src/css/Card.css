@@ -1,5 +1,12 @@
 .card-element {
-  border: 1px solid red;
-  margin: 0 auto;
-  width: 30%;
+  box-shadow:  20px 20px 20px #cacdcb,
+             -20px -20px 60px #ffffff;
+  border-radius: 5%;
+  margin: 20px auto;
+  width: fit-content;
+}
+
+.card-element img {
+  border-radius: 5%;
+  width: 25em;
 }

@@ -1,5 +1,5 @@
 .card-list {
   flex-flow: row wrap;
-  justify-content: center;
+  justify-content: space-evenly;
   padding: 10px;
 }

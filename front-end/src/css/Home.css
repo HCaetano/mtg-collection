@@ -1,0 +1,28 @@
+.button-position {
+  justify-content: flex-end;
+}
+
+.card-actions {
+  align-items: center;
+  border: 2px solid #B29BFF;
+  margin: 0 auto;
+  width: 45%;
+}
+
+.card-actions div {
+  display: flex;
+  margin: 10px auto;
+  justify-content: flex-end;
+}
+
+.card-actions .card-actions-top {
+  border-bottom: 1px solid #B29BFF;
+  display: flex;
+  justify-content: space-evenly;
+  padding: 10px;
+  width: 80%;
+}
+
+.card-actions label {
+  margin: 5px auto;
+}
