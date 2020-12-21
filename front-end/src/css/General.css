@@ -1,12 +1,15 @@
 body {
   background-color: #eef1ef;
+  color: #371e30;
   display: flex;
   margin: 0 auto;
   width: 80%;
 }
 
-button {
-  width: 5em;
+input[type="submit"] {
+  color:#371e30;
+  height: 2.5em;
+  width: 10em;
 }
 
 h1 {

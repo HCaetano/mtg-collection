@@ -140,7 +140,7 @@ export default class Home extends Component {
           <div className="card-actions-top">
             <h2>Show a random card from ScryFall</h2>
             <input
-              type="button"
+              type="submit"
               name="show-random-card"
               value="Show card"
               onClick={this.findRandomCard}
