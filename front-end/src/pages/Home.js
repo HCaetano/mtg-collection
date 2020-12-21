@@ -88,21 +88,9 @@ export default class Home extends Component {
 
   insertNewCard(event) {
     event.preventDefault();
-    const { target } = event;
+    const { randomCard } = this.state;
 
-    this.setState({
-      card: {
-        name: target[0].value,
-        manaCost: target[1].value,
-        cmc: target[2].value,
-        typeLine: target[3].value,
-        oracleText: target[4].value,
-        colors: target[5].value,
-        magicSetName: target[6].value,
-        rarity: target[7].value,
-        image: target.innerHTML.split('src="')[1].split('">')[0],
-      },
-    }, () => {
+    this.setState({ card: randomCard }, () => {
       backEndApi.insertNewCard(this.state.card)
         .then(() => this.setState({ card: {} }))
         .then(() => this.getAllCards());
