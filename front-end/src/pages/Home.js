@@ -3,6 +3,7 @@ import * as backEndApi from '../api/BackEndApi';
 import scryFallApi from '../api/ScryFallApi';
 import CardForm from '../components/CardForm';
 import CardList from '../components/CardList';
+import Footer from '../components/Footer';
 import Header from '../components/Header';
 import '../css/Reset.css';
 import '../css/CardForm.css';
@@ -129,7 +130,7 @@ export default class Home extends Component {
     const { cardList, randomCard } = this.state;
 
     return (
-      <Fragment>
+      <div className="page-container" id="root">
         <Header />
         <main>
           <section className="card-gallery">
@@ -163,37 +164,38 @@ export default class Home extends Component {
           </section>
 
           {/* <section className="card-actions">
-          <div className="card-actions-top">
-            <h2>Edit a card from the database</h2>
-            <form>
-              <input
-                type="text"
-                placeholder="Type the card's id"
-                name="search"
-                onBlur={this.updateCardId}
-              />
-              <input
-                name="find-card"
-                type="submit"
-                value="Find card"
-                onClick={this.findCardById}
-              />
-            </form>
-          </div>
-
-          <form onSubmit={this.editCard}>
-            <CardForm card={card} onChange={this.onChange} />
-            <div className="button-position">
-              <input
-                name="edit-card"
-                type="submit"
-                value="Save modifications"
-              />
+            <div className="card-actions-top">
+              <h2>Edit a card from the database</h2>
+              <form>
+                <input
+                  type="text"
+                  placeholder="Type the card's id"
+                  name="search"
+                  onBlur={this.updateCardId}
+                />
+                <input
+                  name="find-card"
+                  type="submit"
+                  value="Find card"
+                  onClick={this.findCardById}
+                />
+              </form>
             </div>
-          </form>
-        </section> */}
+
+            <form onSubmit={this.editCard}>
+              <CardForm card={card} onChange={this.onChange} />
+              <div className="button-position">
+                <input
+                  name="edit-card"
+                  type="submit"
+                  value="Save modifications"
+                />
+              </div>
+            </form>
+          </section> */}
         </main>
-      </Fragment>
+        <Footer />
+      </div>
     );
   }
 }

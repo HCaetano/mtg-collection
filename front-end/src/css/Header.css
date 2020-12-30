@@ -1,12 +1,7 @@
 .header {
   background-color: #B29BFF;
-  display: flex;
-  flex-flow: row wrap;
   height: 50px;
-  padding: 10px;
-  position: fixed;
-  top: 0;
-  left: 0;
+  padding: 5px;
   width: 100%;
 }
 

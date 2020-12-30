@@ -9,9 +9,6 @@ class Header extends Component {
         <div>
           <img className="logo" src={Logo} />
         </div>
-        {/* <div>
-          <p>MTG Collection </p>
-        </div> */}
       </div>
     );
   }
