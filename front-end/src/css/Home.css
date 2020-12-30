@@ -1,5 +1,6 @@
-.button-position {
-  justify-content: flex-end;
+.card-actions .button-position {
+  margin-top: 40px;
+  justify-content: center;
 }
 
 .card-actions {
@@ -16,6 +17,7 @@
 }
 
 .card-actions .card-actions-top {
+  align-items: center;
   border-bottom: 1px solid #B29BFF;
   display: flex;
   justify-content: space-evenly;

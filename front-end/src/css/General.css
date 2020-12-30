@@ -2,7 +2,8 @@ body {
   background-color: #eef1ef;
   color: #371e30;
   display: flex;
-  margin: 0 auto;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  margin: 80px auto 0;
   width: 80%;
 }
 
@@ -13,7 +14,7 @@ input[type="submit"] {
 }
 
 h1 {
-  border: 5px solid #B29BFF;
+  border: 5px solid #592a64;
   font-size: xx-large;
   text-align: center;
 }

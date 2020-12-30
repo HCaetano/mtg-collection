@@ -3,10 +3,12 @@ import * as backEndApi from '../api/BackEndApi';
 import scryFallApi from '../api/ScryFallApi';
 import CardForm from '../components/CardForm';
 import CardList from '../components/CardList';
+import Header from '../components/Header';
 import '../css/Reset.css';
 import '../css/CardForm.css';
 import '../css/General.css';
 import '../css/Home.css';
+import { Fragment } from 'react';
 export default class Home extends Component {
   constructor() {
     super();
@@ -127,38 +129,40 @@ export default class Home extends Component {
     const { cardList, randomCard } = this.state;
 
     return (
-      <main>
-        <section className="card-gallery">
-        <h1>Card gallery</h1>
-          <CardList
-            cards={cardList}
-            deleteCard={this.deleteCard}
-          />
-        </section>
-        
-        <section className="card-actions">
-          <div className="card-actions-top">
-            <h2>Show a random card from ScryFall</h2>
-            <input
-              type="submit"
-              name="show-random-card"
-              value="Show card"
-              onClick={this.findRandomCard}
+      <Fragment>
+        <Header />
+        <main>
+          <section className="card-gallery">
+            <h1>Card gallery</h1>
+            <CardList
+              cards={cardList}
+              deleteCard={this.deleteCard}
             />
-          </div>
-          <form onSubmit={this.insertNewCard}>
-            <CardForm card={randomCard} onChange={this.onChange} />
-            <div className="button-position">
+          </section>
+
+          <section className="card-actions">
+            <div className="card-actions-top">
+              <h2>Show a random card from ScryFall</h2>
               <input
-                name="save-card"
                 type="submit"
-                value="Save"
+                name="show-random-card"
+                value="Show card"
+                onClick={this.findRandomCard}
               />
             </div>
-          </form>
-        </section>
+            <form onSubmit={this.insertNewCard}>
+              <CardForm card={randomCard} onChange={this.onChange} />
+              <div className="button-position">
+                <input
+                  name="save-card"
+                  type="submit"
+                  value="Save"
+                />
+              </div>
+            </form>
+          </section>
 
-        {/* <section className="card-actions">
+          {/* <section className="card-actions">
           <div className="card-actions-top">
             <h2>Edit a card from the database</h2>
             <form>
@@ -188,8 +192,8 @@ export default class Home extends Component {
             </div>
           </form>
         </section> */}
-        
-      </main>
+        </main>
+      </Fragment>
     );
   }
 }

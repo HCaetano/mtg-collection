@@ -1,0 +1,27 @@
+.header {
+  background-color: #B29BFF;
+  display: flex;
+  flex-flow: row wrap;
+  height: 50px;
+  padding: 10px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+
+.header div {
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  height: 100%;
+  width: 10%;
+}
+
+.header p {
+  font-size: 4em;
+}
+
+.logo {
+  max-height: 100%;
+}
