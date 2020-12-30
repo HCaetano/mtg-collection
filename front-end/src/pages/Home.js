@@ -124,7 +124,7 @@ export default class Home extends Component {
   }
 
   render() {
-    const { cardList, card, randomCard } = this.state;
+    const { cardList, randomCard } = this.state;
 
     return (
       <main>

@@ -1,15 +1,15 @@
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
-
+import '../css/Card.css';
 class CardForm extends Component {
   render() {
     const { card, onChange } = this.props;
     const showDetails = window.location.pathname !== '/' ? true : false;
 
     return (
-        showDetails
-          ? (
-            <Fragment>
+      showDetails
+        ? (
+          <Fragment>
             <div>
               <img src={card.image} alt="" />
             </div>
@@ -46,9 +46,12 @@ class CardForm extends Component {
               <input type="text" name="rarity" value={card.rarity || ''} onChange={onChange} />
             </div>
           </Fragment>
-          )
-          : <img src={card.image} />
-
+        )
+      : (
+          <article className="card-element">
+            <img src={card.image} />
+          </article>
+        )
     );
   }
 }
