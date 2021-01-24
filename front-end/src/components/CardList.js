@@ -11,14 +11,15 @@ class CardList extends Component {
       <section className="card-list">
         {
           cards.length > 0
-            ? cards.map((card) => <Card
+            ? cards.map((card) => (
+              <Card
                 card={card}
                 key={card.id}
                 deleteCard={deleteCard}
-              />)
+              />),
+            )
             : 'There are no cards to show.'
-            
-          }
+        }
       </section>
     );
   }

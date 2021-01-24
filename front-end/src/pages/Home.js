@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import * as backEndApi from '../api/BackEndApi';
 import scryFallApi from '../api/ScryFallApi';
 import CardForm from '../components/CardForm';
@@ -9,7 +9,7 @@ import '../css/Reset.css';
 import '../css/CardForm.css';
 import '../css/General.css';
 import '../css/Home.css';
-import cardBack from '../assets/card-back.jpeg'
+import cardBack from '../assets/card-back.jpeg';
 
 export default class Home extends Component {
   constructor() {

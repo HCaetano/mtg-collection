@@ -1,15 +1,15 @@
 .header {
-  background-color: #B29BFF;
+  background-color: #b29bff;
   height: 50px;
   padding: 5px;
   width: 100%;
 }
 
 .header div {
-  justify-content: center;
   align-items: center;
   display: flex;
   height: 100%;
+  justify-content: center;
   width: 10%;
 }
 
