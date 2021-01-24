@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import * as backEndApi from '../api/BackEndApi';
 import scryFallApi from '../api/ScryFallApi';
 import CardForm from '../components/CardForm';
@@ -9,7 +9,8 @@ import '../css/Reset.css';
 import '../css/CardForm.css';
 import '../css/General.css';
 import '../css/Home.css';
-import { Fragment } from 'react';
+import cardBack from '../assets/card-back.jpeg'
+
 export default class Home extends Component {
   constructor() {
     super();
@@ -17,7 +18,7 @@ export default class Home extends Component {
     this.state = {
       cardList: [],
       randomCard: {
-        image: 'https://static.wikia.nocookie.net/mtgsalvation_gamepedia/images/f/f8/Magic_card_back.jpg/revision/latest/scale-to-width-down/250?cb=20140813141013'
+        image: cardBack,
       },
       card: {},
     };
