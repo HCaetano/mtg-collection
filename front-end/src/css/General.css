@@ -1,6 +1,6 @@
 html {
-  height: 100%;
   box-sizing: border-box;
+  height: 100%;
 }
 
 *,
@@ -15,10 +15,14 @@ body {
   font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
-input[type="submit"] {
-  color:#371e30;
+input[ type = 'submit' ] {
+  color: #371e30;
   height: 2.5em;
   width: 10em;
+}
+
+main, h1, section {
+  padding: 10px;
 }
 
 h1 {
@@ -30,11 +34,7 @@ h1 {
 main, section {
   box-sizing: border-box;
   display: flex;
-  margin: 10px 0px;
-}
-
-main, h1, section {
-  padding: 10px;
+  margin: 10px 0;
 }
 
 main {
