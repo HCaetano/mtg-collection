@@ -6,7 +6,6 @@ import CardList from '../components/CardList';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
 import '../css/Reset.css';
-import '../css/CardForm.css';
 import '../css/General.css';
 import '../css/Home.css';
 import cardBack from '../assets/card-back.jpeg';
