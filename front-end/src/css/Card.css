@@ -1,0 +1,12 @@
+.card-element {
+  box-shadow: 20px 20px 20px,
+             -20px -20px 60px #efeaf1;
+  border-radius: 5%;
+  margin: 20px auto;
+  width: fit-content;
+}
+
+.card-element img {
+  border-radius: 5%;
+  width: 25em;
+}

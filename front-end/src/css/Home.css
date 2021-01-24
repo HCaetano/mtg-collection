@@ -1,0 +1,43 @@
+.card-actions .button-position {
+  margin-top: 40px;
+  justify-content: center;
+}
+
+.card-actions {
+  align-items: center;
+  border: 2px solid #B29BFF;
+  margin: 0 auto;
+  width: 50%;
+}
+
+.card-actions div {
+  display: flex;
+  margin: 10px auto;
+  justify-content: flex-end;
+}
+
+.card-actions .card-actions-top {
+  align-items: center;
+  border-bottom: 1px solid #B29BFF;
+  display: flex;
+  justify-content: space-evenly;
+  padding: 10px;
+  width: 80%;
+}
+
+.card-actions label {
+  margin: 5px auto;
+}
+
+.page-container {
+  display: flex;
+  flex-direction: column;
+}
+
+@media only screen and (max-width: 1200px) {
+  .card-actions {
+    border: none;
+    border-top: 2px solid #B29BFF;
+    border-bottom: 2px solid #B29BFF;
+  }
+}
