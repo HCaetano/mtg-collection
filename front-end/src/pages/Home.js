@@ -3,6 +3,13 @@ import * as backEndApi from '../api/BackEndApi';
 import scryFallApi from '../api/ScryFallApi';
 import CardForm from '../components/CardForm';
 import CardList from '../components/CardList';
+import Footer from '../components/Footer';
+import Header from '../components/Header';
+import '../css/Reset.css';
+import '../css/CardForm.css';
+import '../css/General.css';
+import '../css/Home.css';
+import cardBack from '../assets/card-back.jpeg';
 
 export default class Home extends Component {
   constructor() {
@@ -10,7 +17,9 @@ export default class Home extends Component {
 
     this.state = {
       cardList: [],
-      randomCard: {},
+      randomCard: {
+        image: cardBack,
+      },
       card: {},
     };
 
@@ -83,19 +92,9 @@ export default class Home extends Component {
 
   insertNewCard(event) {
     event.preventDefault();
+    const { randomCard } = this.state;
 
-    this.setState({
-      card: {
-        name: event.target[0].value,
-        manaCost: event.target[1].value,
-        cmc: event.target[2].value,
-        typeLine: event.target[3].value,
-        oracleText: event.target[4].value,
-        colors: event.target[5].value,
-        magicSetName: event.target[6].value,
-        rarity: event.target[7].value,
-      },
-    }, () => {
+    this.setState({ card: randomCard }, () => {
       backEndApi.insertNewCard(this.state.card)
         .then(() => this.setState({ card: {} }))
         .then(() => this.getAllCards());
@@ -117,7 +116,7 @@ export default class Home extends Component {
           colors: response.data.colors.toString(),
           magicSetName: response.data.set_name,
           rarity: response.data.rarity,
-          image: response.data.image_uris.small,
+          image: response.data.image_uris.normal,
         };
 
         this.setState({ randomCard });
@@ -129,59 +128,74 @@ export default class Home extends Component {
   }
 
   render() {
-    const { cardList, card, randomCard } = this.state;
+    const { cardList, randomCard } = this.state;
 
     return (
-      <div className="App">
-        <h1>Card gallery</h1>
-        <CardList
-          cards={cardList}
-          deleteCard={this.deleteCard}
-        />
+      <div className="page-container" id="root">
+        <Header />
+        <main>
+          <section className="card-gallery">
+            <h1>Card gallery</h1>
+            <CardList
+              cards={cardList}
+              deleteCard={this.deleteCard}
+            />
+          </section>
 
-        <h2>Show a random card from ScryFall</h2>
-        <form>
-          <input
-            type="button"
-            name="show-random-card"
-            value="Show card"
-            onClick={this.findRandomCard}
-          />
-        </form>
-        <form onSubmit={this.insertNewCard}>
-          <CardForm card={randomCard} onChange={this.onChange} />
-          <input
-            name="save-card"
-            type="submit"
-            value="Save"
-          />
-        </form>
+          <section className="card-actions">
+            <div className="card-actions-top">
+              <h2>Show a random card from ScryFall</h2>
+              <input
+                type="submit"
+                name="show-random-card"
+                value="Show card"
+                onClick={this.findRandomCard}
+              />
+            </div>
+            <form onSubmit={this.insertNewCard}>
+              <CardForm card={randomCard} onChange={this.onChange} />
+              <div className="button-position">
+                <input
+                  name="save-card"
+                  type="submit"
+                  value="Save"
+                />
+              </div>
+            </form>
+          </section>
 
-        <h2>Find a card in the database by its id</h2>
-        <form>
-          <input
-            type="text"
-            placeholder="Type the card's id"
-            name="search"
-            onBlur={this.updateCardId}
-          />
-          <input
-            type="button"
-            name="find-card"
-            value="Find card"
-            onClick={this.findCardById}
-          />
-        </form>
+          {/* <section className="card-actions">
+            <div className="card-actions-top">
+              <h2>Edit a card from the database</h2>
+              <form>
+                <input
+                  type="text"
+                  placeholder="Type the card's id"
+                  name="search"
+                  onBlur={this.updateCardId}
+                />
+                <input
+                  name="find-card"
+                  type="submit"
+                  value="Find card"
+                  onClick={this.findCardById}
+                />
+              </form>
+            </div>
 
-        <h2>Edit a card from the database</h2>
-        <form onSubmit={this.editCard}>
-          <CardForm card={card} onChange={this.onChange} />
-          <input
-            name="edit-card"
-            type="submit"
-            value="Save modifications"
-          />
-        </form>
+            <form onSubmit={this.editCard}>
+              <CardForm card={card} onChange={this.onChange} />
+              <div className="button-position">
+                <input
+                  name="edit-card"
+                  type="submit"
+                  value="Save modifications"
+                />
+              </div>
+            </form>
+          </section> */}
+        </main>
+        <Footer />
       </div>
     );
   }
