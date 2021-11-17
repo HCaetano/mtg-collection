@@ -11,54 +11,18 @@ import '../css/Home.css';
 import cardBack from '../assets/card-back.jpeg';
 
 export default function Home() {
-  // constructor() {
-  // super();
-
   const [cardList, setCardList] = useState([]);
-  const [randomCard, setRandomCard] = useState({
-    image: cardBack,
-  });
   const [card, setCard] = useState({});
-
-  // this.state = {
-  //   cardList: [],
-  //   randomCard: ,
-  //   card: {},
-  // };
-
-  // this.insertNewCard = this.insertNewCard.bind(this);
-  // this.deleteCard = this.deleteCard.bind(this);
-  // this.findCardById = this.findCardById.bind(this);
-  // this.editCard = this.editCard.bind(this);
-  // this.findRandomCard = this.findRandomCard.bind(this);
-  // this.updateCardId = this.updateCardId.bind(this);
-  // this.onChange = this.onChange.bind(this);
-  // this.onChangeRandomCard = this.onChangeRandomCard.bind(this);
-  // }
-
-  // const [data, setData] = useState({});
-
-  // const getData = async () => {
-  //   const res = await fetch("https://api.agify.io/?name=michael");
-  //   const data = await res.json();
-  //   setData(data);
-  // };
 
   const getAllCards = async () => {
     const response = await backEndApi.getAllCards();
 
     setCardList(response.data)
-    // this.setState({ cardList: response.data });
-    // setData(data);
   };
 
   useEffect(() => {
     getAllCards();
   }, []);
-
-  // componentDidMount() {
-  //   this.asyncRequest = this.getAllCards();
-  // }
 
   // onChangeRandomCard(event) {
   //   const target = event.target;
@@ -73,6 +37,7 @@ export default function Home() {
   //   }));
   // }
 
+  const onChange = () => {}
   // onChange(event) {
   //   const target = event.target;
   //   const value = target.value;
@@ -84,12 +49,6 @@ export default function Home() {
   //       [name]: value,
   //     },
   //   }));
-  // }
-
-  // async getAllCards() {
-  //   const response = await backEndApi.getAllCards();
-
-  //   this.setState({ cardList: response.data });
   // }
 
   // findCardById(event) {
@@ -108,50 +67,38 @@ export default function Home() {
   //     .then(() => this.getAllCards());
   // }
 
-  // deleteCard(event) {
+  // const deleteCard = (event) => {
   //   backEndApi.deleteCard(event.target.value)
-  //     .then(() => this.getAllCards());
+  //     .then(() => getAllCards());
   // }
 
-  // insertNewCard(event) {
-  //   event.preventDefault();
-  //   const { randomCard } = this.state;
+  const insertNewCard = () => {
+    backEndApi.insertNewCard(card)
+      .then(() => getAllCards());
+  }
 
-  //   this.setState({ card: randomCard }, () => {
-  //     backEndApi.insertNewCard(this.state.card)
-  //       .then(() => this.setState({ card: {} }))
-  //       .then(() => this.getAllCards());
-  //   });
-  // }
+  const findRandomCard = () => {
+    scryFallApi()
+      .then((response) => {
+        const randomCard = {
+          name: response.data.name,
+          manaCost: response.data.mana_cost,
+          cmc: response.data.cmc,
+          typeLine: response.data.type_line,
+          oracleText: response.data.oracle_text,
+          colors: response.data.colors.toString(),
+          magicSetName: response.data.set_name,
+          rarity: response.data.rarity,
+          image: response.data.image_uris.normal,
+        };
 
-  // findRandomCard(event) {
-  //   event.preventDefault();
-  //   event.persist();
-
-  //   scryFallApi()
-  //     .then((response) => {
-  //       const randomCard = {
-  //         name: response.data.name,
-  //         manaCost: response.data.mana_cost,
-  //         cmc: response.data.cmc,
-  //         typeLine: response.data.type_line,
-  //         oracleText: response.data.oracle_text,
-  //         colors: response.data.colors.toString(),
-  //         magicSetName: response.data.set_name,
-  //         rarity: response.data.rarity,
-  //         image: response.data.image_uris.normal,
-  //       };
-
-  //       this.setState({ randomCard });
-  //     });
-  // }
+        setCard({ ...randomCard });
+      });
+  }
 
   // updateCardId(event) {
   //   this.setState({ cardId: event.target.value });
   // }
-
-  // render() {
-  // const { cardList, randomCard } = this.state;
 
   return (
     <div className="page-container" id="root">
@@ -161,7 +108,7 @@ export default function Home() {
           <h1>Card gallery</h1>
           <CardList
             cards={cardList}
-          // deleteCard={this.deleteCard}
+            // deleteCard={deleteCard}
           />
         </section>
 
@@ -172,19 +119,20 @@ export default function Home() {
               type="submit"
               name="show-random-card"
               value="Show card"
-            // onClick={this.findRandomCard}
+            onClick={findRandomCard}
             />
           </div>
-          {/* <form onSubmit={this.insertNewCard}>
-              <CardForm card={randomCard} onChange={this.onChange} />
+          <form>
+              <CardForm card={card} onChange={onChange} />
               <div className="button-position">
                 <input
                   name="save-card"
-                  type="submit"
+                  type="button"
                   value="Save"
+                  onClick={insertNewCard}
                 />
               </div>
-            </form> */}
+            </form>
         </section>
 
         {/* <section className="card-actions">

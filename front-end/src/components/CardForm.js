@@ -1,15 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import '../css/Card.css';
+import cardBack from '../assets/card-back.jpeg';
 function CardForm({ card, onChange }) {
-  const showDetails = window.location.pathname !== '/' ? true : false;
+  const showDetails = window.location.pathname === '/' ? true : false;
+  console.log("card", card.image)
 
   return (
     showDetails
       ? (
         <>
           <div>
-            <img src={card.image} alt="" />
+            <img className="random-card" src={card.image ? card.image : cardBack} alt="" />
           </div>
           <div>
             <label htmlFor="name">Name: </label>
@@ -47,7 +49,7 @@ function CardForm({ card, onChange }) {
       )
       : (
         <article className="card-element">
-          <img src={card.image} />
+          <img src={card.image ? card.image : cardBack} />
         </article>
       )
   );
