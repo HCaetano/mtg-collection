@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import '../css/Card.css';
 
 const Card = ({ card, deleteCard }) => {
@@ -18,13 +19,24 @@ const Card = ({ card, deleteCard }) => {
               <p>{card.magicSetName}</p>
               <p>{card.rarity}</p>
               <img src={ card.image } alt={ `${card.name} art` } />
-              <button onClick={ deleteCard } value={ card.id }>Delete</button>
+              <button
+                type="button"
+                onClick={ deleteCard }
+                value={ card.id }
+              >
+                Delete
+              </button>
             </article>
           )
           : <img src={ card.image } alt={ `${card.name} art` } />
       }
     </article>
   );
+};
+
+Card.propTypes = {
+  card: PropTypes.shape(PropTypes.string).isRequired,
+  deleteCard: PropTypes.func.isRequired,
 };
 
 export default Card;

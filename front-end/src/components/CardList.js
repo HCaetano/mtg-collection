@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Card from './Card';
 import '../css/CardList.css';
 
@@ -16,5 +17,10 @@ const CardList = ({ cards, deleteCard }) => (
     }
   </section>
 );
+
+CardList.propTypes = {
+  cards: PropTypes.arrayOf(PropTypes.shape(PropTypes.string)).isRequired,
+  deleteCard: PropTypes.func.isRequired,
+};
 
 export default CardList;
