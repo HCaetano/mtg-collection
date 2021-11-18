@@ -1,21 +1,19 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import '../css/Card.css';
 import cardBack from '../assets/card-back.jpeg';
 function CardForm({ card, onChange }) {
   const showDetails = window.location.pathname === '/' ? true : false;
-  console.log("card", card.image)
 
   return (
     showDetails
       ? (
         <>
           <div>
-            <img className="random-card" src={card.image ? card.image : cardBack} alt="" />
+            <img className="random-card" src={card.image ? card.image : cardBack} alt="Random card art" />
           </div>
           <div>
             <label htmlFor="name">Name: </label>
-            <input type="text" name="name" value={card.name || ''} onChange={onChange} />
+            <input type="text" name="name" value={card.name} onChange={onChange} />
           </div>
           <div>
             <label htmlFor="manaCost">Mana cost: </label>
@@ -49,15 +47,10 @@ function CardForm({ card, onChange }) {
       )
       : (
         <article className="card-element">
-          <img src={card.image ? card.image : cardBack} />
+          <img src={card.image ? card.image : cardBack} alt="Random card art"/>
         </article>
       )
   );
 }
-
-CardForm.propTypes = {
-  card: PropTypes.shape(PropTypes.string).isRequired,
-  onChange: PropTypes.func.isRequired,
-};
 
 export default CardForm;

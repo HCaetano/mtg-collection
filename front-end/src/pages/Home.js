@@ -8,47 +8,29 @@ import Header from '../components/Header';
 import '../css/Reset.css';
 import '../css/General.css';
 import '../css/Home.css';
-import cardBack from '../assets/card-back.jpeg';
 
-export default function Home() {
+const Home = () => {
   const [cardList, setCardList] = useState([]);
   const [card, setCard] = useState({});
 
   const getAllCards = async () => {
     const response = await backEndApi.getAllCards();
 
-    setCardList(response.data)
+    setCardList(response.data);
   };
 
   useEffect(() => {
     getAllCards();
   }, []);
 
-  // onChangeRandomCard(event) {
-  //   const target = event.target;
-  //   const value = target.value;
-  //   const name = target.name;
-
-  //   this.setState((prevState) => ({
-  //     randomCard: {
-  //       ...prevState.card,
-  //       [name]: value,
-  //     },
-  //   }));
-  // }
-
-  const onChange = () => {}
-  // onChange(event) {
-  //   const target = event.target;
-  //   const value = target.value;
-  //   const name = target.name;
-
-  //   this.setState((prevState) => ({
-  //     card: {
-  //       ...prevState.card,
-  //       [name]: value,
-  //     },
-  //   }));
+  const onChange = () => {};
+  // const onChange = ({ target }) => {
+  //   const { name, value } = target;
+  //   console.log(name, value)
+  //   setUpdatedCard({
+  //     ...updatedCard,
+  //     [name]: value,
+  //   })
   // }
 
   // findCardById(event) {
@@ -61,7 +43,6 @@ export default function Home() {
 
   // editCard(event) {
   //   event.preventDefault();
-
   //   backEndApi.editCard(this.state.cardId, this.state.card)
   //     .then(() => this.setState({ card: {} }))
   //     .then(() => this.getAllCards());
@@ -75,7 +56,7 @@ export default function Home() {
   const insertNewCard = () => {
     backEndApi.insertNewCard(card)
       .then(() => getAllCards());
-  }
+  };
 
   const findRandomCard = () => {
     scryFallApi()
@@ -94,11 +75,7 @@ export default function Home() {
 
         setCard({ ...randomCard });
       });
-  }
-
-  // updateCardId(event) {
-  //   this.setState({ cardId: event.target.value });
-  // }
+  };
 
   return (
     <div className="page-container" id="root">
@@ -107,7 +84,7 @@ export default function Home() {
         <section className="card-gallery">
           <h1>Card gallery</h1>
           <CardList
-            cards={cardList}
+            cards={ cardList }
             // deleteCard={deleteCard}
           />
         </section>
@@ -119,20 +96,20 @@ export default function Home() {
               type="submit"
               name="show-random-card"
               value="Show card"
-            onClick={findRandomCard}
+              onClick={ findRandomCard }
             />
           </div>
           <form>
-              <CardForm card={card} onChange={onChange} />
-              <div className="button-position">
-                <input
-                  name="save-card"
-                  type="button"
-                  value="Save"
-                  onClick={insertNewCard}
-                />
-              </div>
-            </form>
+            <CardForm card={ card } onChange={ onChange } />
+            <div className="button-position">
+              <input
+                name="save-card"
+                type="button"
+                value="Save"
+                onClick={ insertNewCard }
+              />
+            </div>
+          </form>
         </section>
 
         {/* <section className="card-actions">
@@ -170,4 +147,6 @@ export default function Home() {
     </div>
   );
   // }
-}
+};
+
+export default Home;

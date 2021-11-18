@@ -1,7 +1,6 @@
 .card-element {
   border-radius: 5%;
-  box-shadow: 20px 20px 20px,
-    -20px -20px 60px #efeaf1;
+  box-shadow: 20px 20px 20px, -20px -20px 60px #efeaf1;
   margin: 20px auto;
   width: fit-content;
 }
