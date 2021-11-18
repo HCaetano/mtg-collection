@@ -15,13 +15,15 @@ body {
   font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
-input[ type = 'submit' ] {
+input[type="submit"] {
   color: #371e30;
   height: 2.5em;
   width: 10em;
 }
 
-main, h1, section {
+main,
+h1,
+section {
   padding: 10px;
 }
 
@@ -31,7 +33,8 @@ h1 {
   text-align: center;
 }
 
-main, section {
+main,
+section {
   box-sizing: border-box;
   display: flex;
   margin: 10px 0;

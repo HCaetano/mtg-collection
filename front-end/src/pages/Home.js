@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useState, useEffect } from 'react';
 import * as backEndApi from '../api/BackEndApi';
 import scryFallApi from '../api/ScryFallApi';
 import CardForm from '../components/CardForm';
@@ -8,102 +8,57 @@ import Header from '../components/Header';
 import '../css/Reset.css';
 import '../css/General.css';
 import '../css/Home.css';
-import cardBack from '../assets/card-back.jpeg';
 
-export default class Home extends Component {
-  constructor() {
-    super();
+const Home = () => {
+  const [cardList, setCardList] = useState([]);
+  const [card, setCard] = useState({});
 
-    this.state = {
-      cardList: [],
-      randomCard: {
-        image: cardBack,
-      },
-      card: {},
-    };
-
-    this.insertNewCard = this.insertNewCard.bind(this);
-    this.deleteCard = this.deleteCard.bind(this);
-    this.findCardById = this.findCardById.bind(this);
-    this.editCard = this.editCard.bind(this);
-    this.findRandomCard = this.findRandomCard.bind(this);
-    this.updateCardId = this.updateCardId.bind(this);
-    this.onChange = this.onChange.bind(this);
-    this.onChangeRandomCard = this.onChangeRandomCard.bind(this);
-  }
-
-  componentDidMount() {
-    this.asyncRequest = this.getAllCards();
-  }
-
-  onChangeRandomCard(event) {
-    const target = event.target;
-    const value = target.value;
-    const name = target.name;
-
-    this.setState((prevState) => ({
-      randomCard: {
-        ...prevState.card,
-        [name]: value,
-      },
-    }));
-  }
-
-  onChange(event) {
-    const target = event.target;
-    const value = target.value;
-    const name = target.name;
-
-    this.setState((prevState) => ({
-      card: {
-        ...prevState.card,
-        [name]: value,
-      },
-    }));
-  }
-
-  async getAllCards() {
+  const getAllCards = async () => {
     const response = await backEndApi.getAllCards();
 
-    this.setState({ cardList: response.data });
-  }
+    setCardList(response.data);
+  };
 
-  findCardById(event) {
-    event.preventDefault();
-    event.persist();
+  useEffect(() => {
+    getAllCards();
+  }, []);
 
-    backEndApi.findCardById(this.state.cardId)
-      .then((response) => this.setState({ card: response.data }));
-  }
+  const onChange = () => {};
+  // const onChange = ({ target }) => {
+  //   const { name, value } = target;
+  //   console.log(name, value)
+  //   setUpdatedCard({
+  //     ...updatedCard,
+  //     [name]: value,
+  //   })
+  // }
 
-  editCard(event) {
-    event.preventDefault();
+  // findCardById(event) {
+  //   event.preventDefault();
+  //   event.persist();
 
-    backEndApi.editCard(this.state.cardId, this.state.card)
-      .then(() => this.setState({ card: {} }))
-      .then(() => this.getAllCards());
-  }
+  //   backEndApi.findCardById(this.state.cardId)
+  //     .then((response) => this.setState({ card: response.data }));
+  // }
 
-  deleteCard(event) {
-    backEndApi.deleteCard(event.target.value)
-      .then(() => this.getAllCards());
-  }
+  // editCard(event) {
+  //   event.preventDefault();
+  //   backEndApi.editCard(this.state.cardId, this.state.card)
+  //     .then(() => this.setState({ card: {} }))
+  //     .then(() => this.getAllCards());
+  // }
 
-  insertNewCard(event) {
-    event.preventDefault();
-    const { randomCard } = this.state;
+  // const deleteCard = (event) => {
+  //   backEndApi.deleteCard(event.target.value)
+  //     .then(() => getAllCards());
+  // }
 
-    this.setState({ card: randomCard }, () => {
-      backEndApi.insertNewCard(this.state.card)
-        .then(() => this.setState({ card: {} }))
-        .then(() => this.getAllCards());
-    });
-  }
+  const insertNewCard = () => {
+    backEndApi.insertNewCard(card)
+      .then(() => getAllCards());
+  };
 
-  findRandomCard(event) {
-    event.preventDefault();
-    event.persist();
-
+  const findRandomCard = () => {
     scryFallApi()
       .then((response) => {
         const randomCard = {
@@ -118,52 +73,46 @@ export default class Home extends Component {
           image: response.data.image_uris.normal,
         };
 
-        this.setState({ randomCard });
+        setCard({ ...randomCard });
       });
-  }
+  };
 
-  updateCardId(event) {
-    this.setState({ cardId: event.target.value });
-  }
+  return (
+    <div className="page-container" id="root">
+      <Header />
+      <main>
+        <section className="card-gallery">
+          <h1>Card gallery</h1>
+          <CardList
+            cards={ cardList }
+            // deleteCard={deleteCard}
+          />
+        </section>
 
-  render() {
-    const { cardList, randomCard } = this.state;
-
-    return (
-      <div className="page-container" id="root">
-        <Header />
-        <main>
-          <section className="card-gallery">
-            <h1>Card gallery</h1>
-            <CardList
-              cards={cardList}
-              deleteCard={this.deleteCard}
+        <section className="card-actions">
+          <div className="card-actions-top">
+            <h2>Show a random card from ScryFall</h2>
+            <input
+              type="submit"
+              name="show-random-card"
+              value="Show card"
+              onClick={ findRandomCard }
             />
-          </section>
-
-          <section className="card-actions">
-            <div className="card-actions-top">
-              <h2>Show a random card from ScryFall</h2>
+          </div>
+          <form>
+            <CardForm card={ card } onChange={ onChange } />
+            <div className="button-position">
               <input
-                type="submit"
-                name="show-random-card"
-                value="Show card"
-                onClick={this.findRandomCard}
+                name="save-card"
+                type="button"
+                value="Save"
+                onClick={ insertNewCard }
               />
             </div>
-            <form onSubmit={this.insertNewCard}>
-              <CardForm card={randomCard} onChange={this.onChange} />
-              <div className="button-position">
-                <input
-                  name="save-card"
-                  type="submit"
-                  value="Save"
-                />
-              </div>
-            </form>
-          </section>
+          </form>
+        </section>
 
-          {/* <section className="card-actions">
+        {/* <section className="card-actions">
             <div className="card-actions-top">
               <h2>Edit a card from the database</h2>
               <form>
@@ -193,9 +142,11 @@ export default class Home extends Component {
               </div>
             </form>
           </section> */}
-        </main>
-        <Footer />
-      </div>
-    );
-  }
-}
+      </main>
+      <Footer />
+    </div>
+  );
+  // }
+};
+
+export default Home;
