@@ -1,4 +1,4 @@
-version: "2"         # required to adjust maintainability checks
+version: "2" # required to adjust maintainability checks
 checks:
   argument-count:
     config:
@@ -29,10 +29,10 @@ checks:
   identical-code:
     enabled: false
 exclude_patterns:
-- "**/*.test.js"
-- "src/serviceWorker.js"
-- "src/index.css"
-- "node_modules/"
+  - "**/*.test.js"
+  - "src/serviceWorker.js"
+  - "src/index.css"
+  - "node_modules/"
 plugins:
   csslint:
     enabled: true
@@ -42,9 +42,9 @@ plugins:
       fallback-colors:
         enabled: false
       box-model:
-          enabled: false
+        enabled: false
   eslint:
-    enabled: true
+    enabled: false
     config:
       extensions:
         - .js
