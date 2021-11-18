@@ -37,4 +37,12 @@
 #### Added
     * Added header and footer HTML elements and React components, as well as sections (made project more semantic).
     * Chose #B29BFF, #371E30, #EEF1EF and #592A64 as project's colors.
-    * Added an asset image of a MTG card back as placeholder for the random card spot while the show random card is not clicked. 
+    * Added an asset image of a MTG card back as placeholder for the random card spot while the show random card is not clicked.
+    * Enhanced the applications UI's in general
+    
+## 0.6.0
+### Release date: 2021-10-18
+
+#### Changed
+	* Refactored all the components from class to functional
+	* Fixed numerous eslint issues.
