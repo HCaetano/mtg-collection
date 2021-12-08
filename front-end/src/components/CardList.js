@@ -3,24 +3,22 @@ import PropTypes from 'prop-types';
 import Card from './Card';
 import '../css/CardList.css';
 
-const CardList = ({ cards, deleteCard }) => (
-  <section className="card-list">
+const CardList = ({ cards }) => (
+  <article className="card-list">
     {
       cards.length > 0
         ? cards.map((card) => (
           <Card
-            card={ card }
+            content={ card }
             key={ card.id }
-            deleteCard={ deleteCard }
           />))
         : 'There are no cards to show.'
     }
-  </section>
+  </article>
 );
 
 CardList.propTypes = {
-  cards: PropTypes.arrayOf(PropTypes.shape(PropTypes.string)).isRequired,
-  deleteCard: PropTypes.func.isRequired,
+  cards: PropTypes.arrayOf(PropTypes.shape(PropTypes.string)),
 };
 
 export default CardList;
