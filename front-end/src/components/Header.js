@@ -1,13 +1,14 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import Logo from '../assets/planeswalker-logo.png';
 import '../css/Header.css';
 
 const Header = () => (
-  <div className="header">
-    <div>
+  <header className="header">
+    <Link to="/">
       <img className="logo" src={ Logo } alt="Planeswalker spark" />
-    </div>
-  </div>
+    </Link>
+  </header>
 );
 
 export default Header;
