@@ -22,7 +22,7 @@ const CardDetails = () => {
   return (
     <>
       <Header />
-      <Card content={card}/>
+      <Card content={card} />
       <Footer />
     </>
   );

@@ -55,33 +55,31 @@ const Card = ({ content }) => {
   return (
     isDetailsPage
     ?
-    <article className="card-element no-shadow">
-      <img src={ image } alt={ `${name} art` } />
-      {/* <hr className="separator-line" /> */}
-      <section className="card-info-container">
-        <p className="card-info"><span className="text-line">{name}</span></p>
-        <p className="card-info"><span className="text-line">{manaCost}</span></p>
-        <p className="card-info"><span className="text-line">{typeLine}</span></p>
-        {/* <p className="card-info"><span className="text-line">{oracleTextParser(oracleText)}</span></p> */}
-        <p className="card-info"><span className="text-line">{displayFullColorName(colors)}</span></p>
-        <p className="card-info"><span className="text-line">{magicSetName}</span></p>
-        <p className="card-info"><span className="text-line">{capitalizeFirstCharacter(rarity)}</span></p>
-        <button
-          className="delete-button"
-          type="button"
-          onClick={ deleteCard }
-          value={ id }
-        >
-          Delete
-        </button>
-      </section>
-    </article>
+      <article className="card-element no-shadow">
+        <img src={ image } alt={ `${name} art` } />
+        <section className="card-info-container">
+          <p className="card-info"><span className="text-line">{name}</span></p>
+          <p className="card-info"><span className="text-line">{manaCost}</span></p>
+          <p className="card-info"><span className="text-line">{typeLine}</span></p>
+          {/* <p className="card-info"><span className="text-line">{oracleTextParser(oracleText)}</span></p> */}
+          <p className="card-info"><span className="text-line">{displayFullColorName(colors)}</span></p>
+          <p className="card-info"><span className="text-line">{magicSetName}</span></p>
+          <p className="card-info"><span className="text-line">{capitalizeFirstCharacter(rarity)}</span></p>
+          <button
+            className="delete-button"
+            type="button"
+            onClick={ deleteCard }
+            value={ id }
+          >
+            Delete
+          </button>
+        </section>
+      </article>
     :
-    <article className="card-element">
-      <img src={ image } alt={ `${name} art` } />
-    </article>
+      <article className="card-element" onClick={() => navigate(`/card/${id}`)}>
+        <img className="card-art" src={ image } alt={ `${name} art` } />
+      </article>
   )
-
 };
 
 export default Card;
