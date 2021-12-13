@@ -95,7 +95,7 @@ const CardForm = ({ card, onChange }) => {
 };
 
 CardForm.propTypes = {
-  card: PropTypes.shape(PropTypes.string).isRequired,
+  card: PropTypes.shape(PropTypes.string),
   onChange: PropTypes.func.isRequired,
 };
 
