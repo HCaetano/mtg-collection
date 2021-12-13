@@ -49,9 +49,3 @@ main {
 section {
   flex-direction: column;
 }
-
-.card-gallery {
-  flex-flow: column wrap;
-  justify-content: center;
-  width: 100%;
-}

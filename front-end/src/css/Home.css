@@ -6,7 +6,7 @@
 .card-actions {
   align-items: center;
   border: 2px solid #b29bff;
-  margin: 0 auto;
+  margin: 0 auto 90px;
   width: 50%;
 }
 
@@ -27,6 +27,12 @@
 
 .card-actions label {
   margin: 5px auto;
+}
+
+.card-gallery {
+  flex-flow: column;
+  justify-content: center;
+  width: 100%;
 }
 
 .page-container {

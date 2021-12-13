@@ -33,24 +33,11 @@ const Home = () => {
   //   })
   // }
 
-  // findCardById(event) {
-  //   event.preventDefault();
-  //   event.persist();
-
-  //   backEndApi.findCardById(this.state.cardId)
-  //     .then((response) => this.setState({ card: response.data }));
-  // }
-
   // editCard(event) {
   //   event.preventDefault();
   //   backEndApi.editCard(this.state.cardId, this.state.card)
   //     .then(() => this.setState({ card: {} }))
   //     .then(() => this.getAllCards());
-  // }
-
-  // const deleteCard = (event) => {
-  //   backEndApi.deleteCard(event.target.value)
-  //     .then(() => getAllCards());
   // }
 
   const insertNewCard = () => {
@@ -78,14 +65,13 @@ const Home = () => {
   };
 
   return (
-    <div className="page-container" id="root">
+    <div className="page-container">
       <Header />
       <main>
         <section className="card-gallery">
           <h1>Card gallery</h1>
           <CardList
             cards={ cardList }
-            // deleteCard={deleteCard}
           />
         </section>
 
