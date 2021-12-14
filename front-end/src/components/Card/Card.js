@@ -1,7 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router';
-import * as backEndApi from '../api/BackEndApi';
-import '../css/Card.css';
+import * as backEndApi from '../../api/BackEndApi';
+import styles from './styles.module.css';
 
 const Card = ({ content }) => {
   const {
@@ -55,18 +55,18 @@ const Card = ({ content }) => {
   return (
     isDetailsPage
     ?
-      <article className="card-element no-shadow">
+      <article className={styles["card-element no-shadow"]}>
         <img src={ image } alt={ `${name} art` } />
-        <section className="card-info-container">
-          <p className="card-info"><span className="text-line">{name}</span></p>
-          <p className="card-info"><span className="text-line">{manaCost}</span></p>
-          <p className="card-info"><span className="text-line">{typeLine}</span></p>
-          {/* <p className="card-info"><span className="text-line">{oracleTextParser(oracleText)}</span></p> */}
-          <p className="card-info"><span className="text-line">{displayFullColorName(colors)}</span></p>
-          <p className="card-info"><span className="text-line">{magicSetName}</span></p>
-          <p className="card-info"><span className="text-line">{capitalizeFirstCharacter(rarity)}</span></p>
+        <section className={styles["card-info-container]"]}>
+          <p className={styles["card-info"]}><span className={styles["text-line"]}>{name}</span></p>
+          <p className={styles["card-info"]}><span className={styles["text-line"]}>{manaCost}</span></p>
+          <p className={styles["card-info"]}><span className={styles["text-line"]}>{typeLine}</span></p>
+          {/* <p className={styles["card-info"]}><span className={styles["text-line"]}>{oracleTextParser(oracleText)}</span></p> */}
+          <p className={styles["card-info"]}><span className={styles["text-line"]}>{displayFullColorName(colors)}</span></p>
+          <p className={styles["card-info"]}><span className={styles["text-line"]}>{magicSetName}</span></p>
+          <p className={styles["card-info"]}><span className={styles["text-line"]}>{capitalizeFirstCharacter(rarity)}</span></p>
           <button
-            className="delete-button"
+            className={styles["delete-button"]}
             type="button"
             onClick={ deleteCard }
             value={ id }
@@ -76,8 +76,8 @@ const Card = ({ content }) => {
         </section>
       </article>
     :
-      <article className="card-element" onClick={() => navigate(`/card/${id}`)}>
-        <img className="card-art" src={ image } alt={ `${name} art` } />
+      <article className={styles["card-element"]} onClick={() => navigate(`/card/${id}`)}>
+        <img className={styles["card-art"]} src={ image } alt={ `${name} art` } />
       </article>
   )
 };

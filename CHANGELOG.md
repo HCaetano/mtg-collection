@@ -44,7 +44,7 @@
 ### Release date: 2021-10-18
 
 #### Changed
-	* Refactored all the components from class to functional.
+	* Refactored all components from class to functional.
 	* Fixed numerous eslint issues.
 	
 ## 0.7.0
@@ -55,3 +55,10 @@
 
 #### Fixed
     * Removed white area from the cards' box shadow.
+    
+## 0.8.0
+### Release date: 2021-12-14
+
+#### Changed
+	* Refactored all components to use CSS Modules.
+	* Minor changes in style
