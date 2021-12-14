@@ -1,13 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import * as backEndApi from '../api/BackEndApi';
-import scryFallApi from '../api/ScryFallApi';
-import CardForm from '../components/CardForm';
-import CardList from '../components/CardList';
-import Footer from '../components/Footer';
-import Header from '../components/Header';
-import '../css/Reset.css';
-import '../css/General.css';
-import '../css/Home.css';
+import * as backEndApi from '../../api/BackEndApi';
+import scryFallApi from '../../api/ScryFallApi';
+import CardForm from '../../components/CardForm/CardForm';
+import CardList from '../../components/CardList/CardList';
+import Footer from '../../components/Footer/Footer';
+import Header from '../../components/Header/Header';
+import styles from './styles.module.css';
 
 const Home = () => {
   const [cardList, setCardList] = useState([]);
@@ -65,18 +63,18 @@ const Home = () => {
   };
 
   return (
-    <div className="page-container">
+    <section className={styles["page-container"]}>
       <Header />
-      <main>
-        <section className="card-gallery">
-          <h1>Card gallery</h1>
+      <main className={styles["main-content"]}>
+        <section className={styles["card-gallery"]}>
+          <h1 className={styles.title}>Card gallery</h1>
           <CardList
             cards={ cardList }
           />
         </section>
 
-        <section className="card-actions">
-          <div className="card-actions-top">
+        <section className={styles["card-actions"]}>
+          <div className={styles["card-actions-top"]}>
             <h2>Show a random card from ScryFall</h2>
             <input
               type="submit"
@@ -85,7 +83,6 @@ const Home = () => {
               onClick={ findRandomCard }
             />
           </div>
-          <form>
             <CardForm card={ card } onChange={ onChange } />
             <div className="button-position">
               <input
@@ -95,7 +92,6 @@ const Home = () => {
                 onClick={ insertNewCard }
               />
             </div>
-          </form>
         </section>
 
         {/* <section className="card-actions">
@@ -130,7 +126,7 @@ const Home = () => {
           </section> */}
       </main>
       <Footer />
-    </div>
+    </section>
   );
   // }
 };
