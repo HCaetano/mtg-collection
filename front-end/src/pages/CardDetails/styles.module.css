@@ -1,3 +1,7 @@
+.card-container {
+  display: flex;
+}
+
 .page-container {
   display: flex;
   flex-flow: column;

@@ -4,7 +4,7 @@ import styles from './styles.module.css';
 const Footer = () => (
   <footer className={styles.footer}>
     <div>
-      Devolped by Havyner Caetano,
+      Developed by Havyner Caetano,
       {` ${new Date().getFullYear()}`}
       {' '}
       &#169;
