@@ -4,8 +4,8 @@ import {
   Routes,
   Route,
 } from 'react-router-dom';
-import Home from './pages/Home';
-import CardDetails from './pages/CardDetails';
+import Home from './pages/Home/Home';
+import CardDetails from './pages/CardDetails/CardDetails';
 
 const App = () => (
   <BrowserRouter>

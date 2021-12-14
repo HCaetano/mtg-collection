@@ -1,8 +1,8 @@
 import React from 'react';
-import '../css/Footer.css';
+import styles from './styles.module.css';
 
 const Footer = () => (
-  <footer className="footer">
+  <footer className={styles.footer}>
     <div>
       Devolped by Havyner Caetano,
       {` ${new Date().getFullYear()}`}

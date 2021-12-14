@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import '../css/Card.css';
-import cardBack from '../assets/card-back.jpeg';
+import styles from './styles.module.css';
+import cardBack from '../../assets/card-back.jpeg';
 
 const CardForm = ({ card, onChange }) => {
   const showDetails = window.location.pathname === '/';
@@ -12,7 +12,7 @@ const CardForm = ({ card, onChange }) => {
         <>
           <div>
             <img
-              className="random-card"
+              className={styles["random-card"]}
               src={ card.image ? card.image : cardBack }
               alt="Random card art"
             />
@@ -87,7 +87,7 @@ const CardForm = ({ card, onChange }) => {
         </>
       )
       : (
-        <article className="card-element">
+        <article className={styles["card-element"]}>
           <img src={ card.image ? card.image : cardBack } alt="Random card art" />
         </article>
       )

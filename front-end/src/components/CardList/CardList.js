@@ -1,11 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Card from './Card';
-import '../css/CardList.css';
+import Card from '../Card/Card';
+import styles from './styles.module.css';
 
 const CardList = ({ cards }) => {
   return (
-    <section className="card-list">
+    <section className={styles["card-list"]}>
       {
         cards.length > 0
           ? cards.map((card) => (

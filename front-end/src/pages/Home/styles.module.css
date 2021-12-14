@@ -47,3 +47,9 @@
     border-top: 2px solid #b29bff;
   }
 }
+
+h1 {
+  border: 5px solid #592a64;
+  font-size: xx-large;
+  text-align: center;
+}
