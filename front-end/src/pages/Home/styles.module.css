@@ -35,9 +35,25 @@
   width: 100%;
 }
 
+.main-content {
+  display: flex;
+  flex-flow: column;
+  margin: 0 auto;
+  width: 80%;
+}
+
 .page-container {
   display: flex;
   flex-direction: column;
+}
+
+.title {
+  border-bottom: 2px solid #592a64;
+  font-size: xx-large;
+  margin: 25px auto;
+  text-align: center;
+  text-transform: uppercase;
+  width: 40%;
 }
 
 @media only screen and (max-width: 1200px) {
@@ -46,10 +62,4 @@
     border-bottom: 2px solid #b29bff;
     border-top: 2px solid #b29bff;
   }
-}
-
-h1 {
-  border: 5px solid #592a64;
-  font-size: xx-large;
-  text-align: center;
 }

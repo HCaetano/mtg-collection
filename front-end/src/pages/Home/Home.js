@@ -63,11 +63,11 @@ const Home = () => {
   };
 
   return (
-    <div className={styles["page-container"]}>
+    <section className={styles["page-container"]}>
       <Header />
-      <main>
+      <main className={styles["main-content"]}>
         <section className={styles["card-gallery"]}>
-          <h1>Card gallery</h1>
+          <h1 className={styles.title}>Card gallery</h1>
           <CardList
             cards={ cardList }
           />
@@ -128,7 +128,7 @@ const Home = () => {
           </section> */}
       </main>
       <Footer />
-    </div>
+    </section>
   );
   // }
 };
