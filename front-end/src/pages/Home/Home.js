@@ -83,7 +83,6 @@ const Home = () => {
               onClick={ findRandomCard }
             />
           </div>
-          <form>
             <CardForm card={ card } onChange={ onChange } />
             <div className="button-position">
               <input
@@ -93,7 +92,6 @@ const Home = () => {
                 onClick={ insertNewCard }
               />
             </div>
-          </form>
         </section>
 
         {/* <section className="card-actions">

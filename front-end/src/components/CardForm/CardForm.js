@@ -9,7 +9,7 @@ const CardForm = ({ card, onChange }) => {
   return (
     showDetails
       ? (
-        <>
+        <section>
           <div>
             <img
               className={styles["random-card"]}
@@ -84,12 +84,12 @@ const CardForm = ({ card, onChange }) => {
               onChange={ onChange }
             />
           </div>
-        </>
+        </section>
       )
       : (
-        <article className={styles["card-element"]}>
+        <section className={styles["card-element"]}>
           <img src={ card.image ? card.image : cardBack } alt="Random card art" />
-        </article>
+        </section>
       )
   );
 };

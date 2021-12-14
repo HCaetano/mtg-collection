@@ -4,6 +4,7 @@ import * as backEndApi from '../../api/BackEndApi';
 import Card from '../../components/Card/Card';
 import Footer from '../../components/Footer/Footer';
 import Header from '../../components/Header/Header';
+import styles from './styles.module.css';
 
 const CardDetails = () => {
   const [card, setCard] = useState({});
@@ -20,7 +21,7 @@ const CardDetails = () => {
   if (!card) return 'Card not found';
 
   return (
-    <section>
+    <section className={styles["page-container"]}>
       <Header />
       <Card content={card} />
       <Footer />

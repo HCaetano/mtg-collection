@@ -8,5 +8,6 @@
   justify-content: center;
   margin-top: 30px;
   padding: 10px;
+  position: absolute;
   width: 100%;
 }
