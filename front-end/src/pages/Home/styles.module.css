@@ -1,32 +1,10 @@
-.card-actions .button-position {
-  justify-content: center;
-  margin-top: 40px;
-}
-
-.card-actions {
-  align-items: center;
-  border: 2px solid #b29bff;
-  margin: 0 auto 90px;
-  width: 50%;
-}
-
-.card-actions div {
-  display: flex;
-  justify-content: flex-end;
-  margin: 10px auto;
-}
-
-.card-actions .card-actions-top {
-  align-items: center;
-  border-bottom: 1px solid #b29bff;
-  display: flex;
-  justify-content: space-evenly;
-  padding: 10px;
-  width: 80%;
-}
-
-.card-actions label {
-  margin: 5px auto;
+.button {
+  background-color: #371e30;
+  border-radius: 4px;
+  color: white;
+  border: none;
+  padding: 12px 16px;
+  width: fit-content;
 }
 
 .card-gallery {
@@ -46,6 +24,43 @@
   display: flex;
   flex-direction: column;
   position: relative;
+}
+
+.random-card-container .button-position {
+  justify-content: center;
+  margin-top: 40px;
+}
+
+.random-card-container {
+  align-items: center;
+  border: 2px solid #b29bff;
+  margin: 50px auto 90px;
+  width: 50%;
+}
+
+.random-card-container div {
+  display: flex;
+  justify-content: flex-end;
+  margin: 10px auto;
+}
+
+.random-card-container .random-card-top {
+  align-items: center;
+  border-bottom: 1px solid #b29bff;
+  display: flex;
+  justify-content: space-evenly;
+  padding: 10px;
+  width: 80%;
+}
+
+.random-card-container label {
+  margin: 5px auto;
+}
+
+.save-button {
+  font-size: 16px;
+  padding: 16px 20px;
+  width: 110px;
 }
 
 .title {
