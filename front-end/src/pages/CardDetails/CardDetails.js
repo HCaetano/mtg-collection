@@ -62,7 +62,7 @@ const CardDetails = () => {
           {/* <p className={styles["card-info"]}><span className={styles["text-line"]}>{oracleTextParser(card.oracleText)}</span></p> */}
           <p className={styles["card-info"]}><span className={styles["text-line"]}>{displayFullColorName(card.colors)}</span></p>
           <p className={styles["card-info"]}><span className={styles["text-line"]}>{card.magicSetName}</span></p>
-          <p className={styles["card-info"]}><span className={styles["text-line"]}>{capitalizeFirstCharacter(card.rarity)}</span></p>
+          <p><span className={styles["text-line"]}>{capitalizeFirstCharacter(card.rarity)}</span></p>
           <button
             className={styles["delete-button"]}
             type="button"
