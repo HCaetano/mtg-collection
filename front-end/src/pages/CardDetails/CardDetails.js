@@ -18,7 +18,7 @@ const CardDetails = () => {
 
   useEffect(() => {
     findCardById();
-  }, []);
+  }, [findCardById]);
 
   const capitalizeFirstCharacter = (string) => {
     if (typeof string !== 'string') return ''
@@ -55,7 +55,7 @@ const CardDetails = () => {
       <Header />
       <div className={styles["card-container"]}>
         <Card content={card} />
-        <section className={styles["card-info-container]"]}>
+        <section className={styles["card-info-container"]}>
           <p className={styles["card-info"]}><span className={styles["text-line"]}>{card.name}</span></p>
           <p className={styles["card-info"]}><span className={styles["text-line"]}>{card.manaCost}</span></p>
           <p className={styles["card-info"]}><span className={styles["text-line"]}>{card.typeLine}</span></p>

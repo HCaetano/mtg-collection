@@ -1,8 +1,29 @@
 .card-container {
   display: flex;
+  margin-top: 100px;
+}
+
+.card-info-container {
+  box-shadow: 20px 20px 20px, 0 0 0 #efeaf1;
+  display: flex;
+  flex-flow: column;
+  height: fit-content;
+  margin-top: 30px;
+  padding: 16px;
+}
+
+.delete-button {
+  align-self: flex-end;
+  background-color: #371e30;
+  border-radius: 4px;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  width: fit-content;
 }
 
 .page-container {
+  align-items: center;
   display: flex;
   flex-flow: column;
   height: 100vh;
