@@ -1,11 +1,11 @@
-import React, { useCallback, useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom'
-import * as backEndApi from '../../api/BackEndApi';
-import { useNavigate } from 'react-router';
-import Card from '../../components/Card/Card';
-import Footer from '../../components/Footer/Footer';
-import Header from '../../components/Header/Header';
-import styles from './styles.module.css';
+import React, { useCallback, useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import * as backEndApi from "../../api/BackEndApi";
+import { useNavigate } from "react-router";
+import Card from "../../components/Card/Card";
+import Footer from "../../components/Footer/Footer";
+import Header from "../../components/Header/Header";
+import styles from "./styles.module.css";
 
 const CardDetails = () => {
   const [card, setCard] = useState({});
@@ -21,15 +21,14 @@ const CardDetails = () => {
   }, [findCardById]);
 
   const capitalizeFirstCharacter = (string) => {
-    if (typeof string !== 'string') return ''
+    if (typeof string !== "string") return "";
 
-    return string.charAt(0).toUpperCase() + string.slice(1)
-  }
+    return string.charAt(0).toUpperCase() + string.slice(1);
+  };
 
   const deleteCard = () => {
-    backEndApi.deleteCard(id)
-      .then(() => navigate("/"));
-  }
+    backEndApi.deleteCard(id).then(() => navigate("/"));
+  };
 
   const displayFullColorName = (colorCode) => {
     switch (colorCode) {
@@ -46,9 +45,9 @@ const CardDetails = () => {
       default:
         return colorCode;
     }
-  }
+  };
 
-  if (!card) return 'Card not found';
+  if (!card) return "Card not found";
 
   return (
     <section className={styles["page-container"]}>
@@ -56,17 +55,33 @@ const CardDetails = () => {
       <div className={styles["card-container"]}>
         <Card content={card} />
         <section className={styles["card-info-container"]}>
-          <p className={styles["card-info"]}><span className={styles["text-line"]}>{card.name}</span></p>
-          <p className={styles["card-info"]}><span className={styles["text-line"]}>{card.manaCost}</span></p>
-          <p className={styles["card-info"]}><span className={styles["text-line"]}>{card.typeLine}</span></p>
+          <p className={styles["card-info"]}>
+            <span className={styles["text-line"]}>{card.name}</span>
+          </p>
+          <p className={styles["card-info"]}>
+            <span className={styles["text-line"]}>{card.manaCost}</span>
+          </p>
+          <p className={styles["card-info"]}>
+            <span className={styles["text-line"]}>{card.typeLine}</span>
+          </p>
           {/* <p className={styles["card-info"]}><span className={styles["text-line"]}>{oracleTextParser(card.oracleText)}</span></p> */}
-          <p className={styles["card-info"]}><span className={styles["text-line"]}>{displayFullColorName(card.colors)}</span></p>
-          <p className={styles["card-info"]}><span className={styles["text-line"]}>{card.magicSetName}</span></p>
-          <p><span className={styles["text-line"]}>{capitalizeFirstCharacter(card.rarity)}</span></p>
+          <p className={styles["card-info"]}>
+            <span className={styles["text-line"]}>
+              {displayFullColorName(card.colors)}
+            </span>
+          </p>
+          <p className={styles["card-info"]}>
+            <span className={styles["text-line"]}>{card.magicSetName}</span>
+          </p>
+          <p>
+            <span className={styles["text-line"]}>
+              {capitalizeFirstCharacter(card.rarity)}
+            </span>
+          </p>
           <button
             className={styles["delete-button"]}
             type="button"
-            onClick={ deleteCard }
+            onClick={deleteCard}
           >
             Delete
           </button>
