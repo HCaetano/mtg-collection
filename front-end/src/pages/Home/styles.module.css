@@ -7,6 +7,11 @@
   width: fit-content;
 }
 
+.button-position {
+  justify-content: center;
+  margin-top: 40px;
+}
+
 .card-gallery {
   flex-flow: column;
   justify-content: center;
@@ -26,31 +31,25 @@
   position: relative;
 }
 
-.random-card-container .button-position {
-  justify-content: center;
-  margin-top: 40px;
-}
-
 .random-card-container {
   align-items: center;
   border: 2px solid #b29bff;
+  display: flex;
+  flex-flow: column;
+  justify-content: space-evenly;
   margin: 50px auto 90px;
+  padding: 10px;
   width: 50%;
 }
 
-.random-card-container div {
-  display: flex;
-  justify-content: flex-end;
-  margin: 10px auto;
-}
-
-.random-card-container .random-card-top {
+.random-card-top {
   align-items: center;
   border-bottom: 1px solid #b29bff;
   display: flex;
   justify-content: space-evenly;
-  padding: 10px;
-  width: 80%;
+  margin: 10px auto 20px;
+  padding: 10px 10px 20px 10px;
+  width: 100%;
 }
 
 .random-card-container label {
