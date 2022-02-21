@@ -8,5 +8,5 @@ spring:
     platform: postgres
     url: jdbc:postgresql://localhost:5432/mtg-collection
     username: postgres
-    password: senha
+    password: senha123
     driverClassName: org.postgresql.Driver

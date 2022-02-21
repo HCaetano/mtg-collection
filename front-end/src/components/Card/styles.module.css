@@ -1,5 +1,5 @@
 .card-art {
-  width: 400px;
+  height: 500px;
 }
 
 .card-element {
@@ -21,38 +21,10 @@
   margin: 5px;
 }
 
-.card-info-container {
-  box-shadow: 20px 20px 20px, 0 0 0 #efeaf1;
-  display: flex;
-  flex-flow: column;
-  height: fit-content;
-  margin-top: 30px;
-  padding: 16px;
-}
-
-.delete-button {
-  align-self: flex-end;
-  background-color: #371e30;
-  border-radius: 4px;
-  color: white;
-  border: none;
-  padding: 8px 16px;
-  width: fit-content;
-}
-
 .no-shadow {
   box-shadow: none;
 }
 
 .random-card {
   height: 500px;
-}
-
-.separator-line {
-  border-top: 2px solid #371e30;
-  width: 95%;
-}
-
-.text-line {
-  border-bottom: 0.1rem solid #371e30;
 }
