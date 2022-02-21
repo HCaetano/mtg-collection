@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import classNames from "classnames";
+import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
+import { Watch } from "react-loader-spinner";
 import * as backEndApi from "../../api/BackEndApi";
 import scryFallApi from "../../api/ScryFallApi";
 import Card from "../../components/Card/Card";
@@ -11,6 +13,7 @@ import styles from "./styles.module.css";
 const Home = () => {
   const [cardList, setCardList] = useState([]);
   const [card, setCard] = useState({});
+  const [isLoading, setIsLoading] = useState(false);
 
   const getAllCards = async () => {
     const response = await backEndApi.getAllCards();
@@ -22,10 +25,15 @@ const Home = () => {
   }, []);
 
   const insertNewCard = () => {
-    backEndApi.insertNewCard(card).then(() => getAllCards());
+    setIsLoading(true);
+    backEndApi.insertNewCard(card).then(() => {
+      getAllCards();
+      setIsLoading(false);
+    });
   };
 
   const findRandomCard = () => {
+    setIsLoading(true);
     scryFallApi().then(({ data }) => {
       const randomCard = {
         name: data.name,
@@ -40,6 +48,7 @@ const Home = () => {
       };
 
       setCard({ ...randomCard });
+      setIsLoading(false);
     });
   };
 
@@ -54,8 +63,23 @@ const Home = () => {
         <section className={styles["random-card-container"]}>
           <div className={styles["random-card-top"]}>
             <h2>Fetch a random card from ScryFall</h2>
-            <button className={styles.button} onClick={findRandomCard}>
-              Show card
+            <button
+              className={classNames(
+                styles.button,
+                styles["show-random-card-button"]
+              )}
+              onClick={findRandomCard}
+            >
+              {isLoading ? (
+                <Watch
+                  ariaLabel="loading"
+                  color="white"
+                  height="20"
+                  width="20"
+                />
+              ) : (
+                "Show card"
+              )}
             </button>
           </div>
           <Card content={card} />
@@ -64,7 +88,16 @@ const Home = () => {
               className={classNames(styles.button, styles["save-button"])}
               onClick={insertNewCard}
             >
-              Save
+              {isLoading ? (
+                <Watch
+                  ariaLabel="loading"
+                  color="white"
+                  height="20"
+                  width="20"
+                />
+              ) : (
+                "Save"
+              )}
             </button>
           </div>
         </section>

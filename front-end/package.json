@@ -12,6 +12,7 @@
     "eslint": "^6.6.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
+    "react-loader-spinner": "^5.1.4",
     "react-router-dom": "^6.0.0-beta.0",
     "react-scripts": "3.4.1"
   },
