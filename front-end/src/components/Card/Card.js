@@ -1,83 +1,27 @@
 import React from 'react';
+import classNames from 'classnames';
 import { useNavigate } from 'react-router';
-import * as backEndApi from '../../api/BackEndApi';
 import styles from './styles.module.css';
+import cardBack from '../../assets/card-back.jpeg';
 
 const Card = ({ content }) => {
   const {
-    colors,
     id,
     image,
     name,
-    magicSetName,
-    manaCost,
-    // oracleText,
-    rarity,
-    typeLine,
   } = content
   const isDetailsPage = window.location.pathname.includes("card/")
   const navigate = useNavigate();
 
-  const capitalizeFirstCharacter = (string) => {
-    if (typeof string !== 'string') return ''
-
-    return string.charAt(0).toUpperCase() + string.slice(1)
-  }
-
-  const deleteCard = ({ target }) => {
-    backEndApi.deleteCard(target.value)
-      .then(() => navigate("/"));
-  }
-
-  const displayFullColorName = (colorCode) => {
-    switch (colorCode) {
-      case "W":
-        return "White";
-      case "U":
-        return "Blue";
-      case "B":
-        return "Black";
-      case "R":
-        return "Red";
-      case "G":
-        return "Green";
-      default:
-        return colorCode;
-    }
-  }
-
-  // const oracleTextParser = (oracleText) => {
-  //   const newString = oracleText?.split(" ");
-  //   const um = newString?.slice(0, 4) + "\n" + newString?.slice(5)
-  //   return um.toString()
-  // }
-
   return (
     isDetailsPage
     ?
-      <article className={styles["card-element no-shadow"]}>
-        <img src={ image } alt={ `${name} art` } />
-        <section className={styles["card-info-container]"]}>
-          <p className={styles["card-info"]}><span className={styles["text-line"]}>{name}</span></p>
-          <p className={styles["card-info"]}><span className={styles["text-line"]}>{manaCost}</span></p>
-          <p className={styles["card-info"]}><span className={styles["text-line"]}>{typeLine}</span></p>
-          {/* <p className={styles["card-info"]}><span className={styles["text-line"]}>{oracleTextParser(oracleText)}</span></p> */}
-          <p className={styles["card-info"]}><span className={styles["text-line"]}>{displayFullColorName(colors)}</span></p>
-          <p className={styles["card-info"]}><span className={styles["text-line"]}>{magicSetName}</span></p>
-          <p className={styles["card-info"]}><span className={styles["text-line"]}>{capitalizeFirstCharacter(rarity)}</span></p>
-          <button
-            className={styles["delete-button"]}
-            type="button"
-            onClick={ deleteCard }
-            value={ id }
-          >
-            Delete
-          </button>
-        </section>
+      <article className={classNames(styles["card-element"], styles["no-shadow"])}>
+        <img className={styles["card-art"]} src={ image ? image : cardBack } alt={ `${name} art` } />
       </article>
     :
       <article className={styles["card-element"]} onClick={() => navigate(`/card/${id}`)}>
-        <img className={styles["card-art"]} src={ image } alt={ `${name} art` } />
+        <img className={styles["card-art"]} src={ image ? image : cardBack } alt={ `${name} art` } />
       </article>
   )
 };
