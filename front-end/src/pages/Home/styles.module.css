@@ -7,6 +7,10 @@
   width: fit-content;
 }
 
+.button-disabled {
+  background: grey;
+}
+
 .button-position {
   justify-content: center;
   margin-top: 40px;
@@ -38,7 +42,7 @@
   flex-flow: column;
   justify-content: space-evenly;
   margin: 50px auto 90px;
-  padding: 10px;
+  padding: 10px 10px 30px;
   width: 50%;
 }
 
@@ -66,6 +70,7 @@
 
 .show-random-card-button {
   display: flex;
+  height: 42px;
   justify-content: center;
   width: 96px;
 }

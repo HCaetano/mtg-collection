@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import classNames from "classnames";
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
+import { useSnackbar } from "react-simple-snackbar";
 import { Watch } from "react-loader-spinner";
 import * as backEndApi from "../../api/BackEndApi";
 import scryFallApi from "../../api/ScryFallApi";
@@ -14,6 +15,18 @@ const Home = () => {
   const [cardList, setCardList] = useState([]);
   const [card, setCard] = useState({});
   const [isLoading, setIsLoading] = useState(false);
+  const [randomCardStatus, setRandomCardStatus] = useState(true);
+  const options = {
+    position: "bottom-left",
+    style: {
+      backgroundColor: "#371e30",
+      color: "white",
+    },
+    closeStyle: {
+      color: "white",
+    },
+  };
+  const [openSnackbar] = useSnackbar(options);
 
   const getAllCards = async () => {
     const response = await backEndApi.getAllCards();
@@ -29,11 +42,14 @@ const Home = () => {
     backEndApi.insertNewCard(card).then(() => {
       getAllCards();
       setIsLoading(false);
+      openSnackbar("Card saved to database");
+      setRandomCardStatus(false);
     });
   };
 
   const findRandomCard = () => {
     setIsLoading(true);
+    setRandomCardStatus(true);
     scryFallApi().then(({ data }) => {
       const randomCard = {
         name: data.name,
@@ -49,6 +65,7 @@ const Home = () => {
 
       setCard({ ...randomCard });
       setIsLoading(false);
+      setRandomCardStatus(false);
     });
   };
 
@@ -85,8 +102,17 @@ const Home = () => {
           <Card content={card} />
           <div className={styles["button-position"]}>
             <button
-              className={classNames(styles.button, styles["save-button"])}
+              className={classNames(
+                randomCardStatus
+                  ? [
+                      styles.button,
+                      styles["save-button"],
+                      styles["button-disabled"],
+                    ]
+                  : [styles.button, styles["save-button"]]
+              )}
               onClick={insertNewCard}
+              disabled={randomCardStatus}
             >
               {isLoading ? (
                 <Watch
