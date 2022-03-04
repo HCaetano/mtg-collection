@@ -1,5 +1,6 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import { useSnackbar } from "react-simple-snackbar";
 import * as backEndApi from "../../api/BackEndApi";
 import { useNavigate } from "react-router";
 import Card from "../../components/Card/Card";
@@ -11,6 +12,17 @@ const CardDetails = () => {
   const [card, setCard] = useState({});
   const { id } = useParams();
   const navigate = useNavigate();
+  const options = {
+    position: "bottom-left",
+    style: {
+      backgroundColor: "#371e30",
+      color: "white",
+    },
+    closeStyle: {
+      color: "white",
+    },
+  };
+  const [openSnackbar] = useSnackbar(options);
 
   const findCardById = useCallback(() => {
     backEndApi.findCardById(id).then((response) => setCard(response.data));
@@ -27,7 +39,10 @@ const CardDetails = () => {
   };
 
   const deleteCard = () => {
-    backEndApi.deleteCard(id).then(() => navigate("/"));
+    backEndApi.deleteCard(id).then(() => {
+      openSnackbar("Card deleted");
+      navigate("/");
+    });
   };
 
   const displayFullColorName = (colorCode) => {
