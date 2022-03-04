@@ -99,7 +99,7 @@ const Home = () => {
               )}
             </button>
           </div>
-          <Card content={card} />
+          <Card content={card} isRandomCard={true} />
           <div className={styles["button-position"]}>
             <button
               className={classNames(
