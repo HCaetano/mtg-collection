@@ -11,7 +11,10 @@ const Card = ({ content, isRandomCard }) => {
 
   return isDetailsPage || isRandomCard ? (
     <article
-      className={classNames(styles["card-element"], styles["no-shadow"])}
+      className={classNames(
+        styles["card-element"],
+        styles["card-details-specifics"]
+      )}
     >
       <img
         className={styles["card-art"]}
