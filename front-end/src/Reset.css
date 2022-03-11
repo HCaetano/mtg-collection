@@ -132,3 +132,11 @@ q:after {
   content: "";
   content: none;
 }
+
+button {
+  cursor: pointer;
+}
+
+button:disabled {
+  cursor: auto;
+}
