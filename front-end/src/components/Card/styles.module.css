@@ -5,6 +5,7 @@
 .card-element {
   border-radius: 34px;
   box-shadow: 20px 20px 20px, -20px -20px 60px #efeaf1;
+  cursor: pointer;
   display: flex;
   height: fit-content;
   margin: 20px auto;
@@ -21,8 +22,9 @@
   margin: 5px;
 }
 
-.no-shadow {
+.card-details-specifics {
   box-shadow: none;
+  cursor: auto;
 }
 
 .random-card {

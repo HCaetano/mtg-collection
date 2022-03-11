@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from "react";
 import classNames from "classnames";
+import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
+import { useSnackbar } from "react-simple-snackbar";
+import { Watch } from "react-loader-spinner";
 import * as backEndApi from "../../api/BackEndApi";
 import scryFallApi from "../../api/ScryFallApi";
 import Card from "../../components/Card/Card";
@@ -11,6 +14,19 @@ import styles from "./styles.module.css";
 const Home = () => {
   const [cardList, setCardList] = useState([]);
   const [card, setCard] = useState({});
+  const [isLoading, setIsLoading] = useState(false);
+  const [randomCardStatus, setRandomCardStatus] = useState(true);
+  const options = {
+    position: "bottom-left",
+    style: {
+      backgroundColor: "#371e30",
+      color: "white",
+    },
+    closeStyle: {
+      color: "white",
+    },
+  };
+  const [openSnackbar] = useSnackbar(options);
 
   const getAllCards = async () => {
     const response = await backEndApi.getAllCards();
@@ -22,10 +38,18 @@ const Home = () => {
   }, []);
 
   const insertNewCard = () => {
-    backEndApi.insertNewCard(card).then(() => getAllCards());
+    setIsLoading(true);
+    backEndApi.insertNewCard(card).then(() => {
+      getAllCards();
+      setIsLoading(false);
+      openSnackbar("Card saved to database");
+      setRandomCardStatus(false);
+    });
   };
 
   const findRandomCard = () => {
+    setIsLoading(true);
+    setRandomCardStatus(true);
     scryFallApi().then(({ data }) => {
       const randomCard = {
         name: data.name,
@@ -40,6 +64,8 @@ const Home = () => {
       };
 
       setCard({ ...randomCard });
+      setIsLoading(false);
+      setRandomCardStatus(false);
     });
   };
 
@@ -54,17 +80,50 @@ const Home = () => {
         <section className={styles["random-card-container"]}>
           <div className={styles["random-card-top"]}>
             <h2>Fetch a random card from ScryFall</h2>
-            <button className={styles.button} onClick={findRandomCard}>
-              Show card
+            <button
+              className={classNames(
+                styles.button,
+                styles["show-random-card-button"]
+              )}
+              onClick={findRandomCard}
+            >
+              {isLoading ? (
+                <Watch
+                  ariaLabel="loading"
+                  color="white"
+                  height="20"
+                  width="20"
+                />
+              ) : (
+                "Show card"
+              )}
             </button>
           </div>
-          <Card content={card} />
+          <Card content={card} isRandomCard={true} />
           <div className={styles["button-position"]}>
             <button
-              className={classNames(styles.button, styles["save-button"])}
+              className={classNames(
+                randomCardStatus
+                  ? [
+                      styles.button,
+                      styles["save-button"],
+                      styles["button-disabled"],
+                    ]
+                  : [styles.button, styles["save-button"]]
+              )}
               onClick={insertNewCard}
+              disabled={randomCardStatus}
             >
-              Save
+              {isLoading ? (
+                <Watch
+                  ariaLabel="loading"
+                  color="white"
+                  height="20"
+                  width="20"
+                />
+              ) : (
+                "Save"
+              )}
             </button>
           </div>
         </section>
