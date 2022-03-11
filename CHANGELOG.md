@@ -61,7 +61,7 @@
 
 #### Changed
 	* Refactored all components to use CSS Modules.
-	* Minor changes in style
+	* Minor changes in style.
 
 ## 0.9.0
 ### Release date: 2022-02-21
@@ -72,3 +72,14 @@
 
 ### Removed
   * Removed CardForm component.
+
+## 0.10.0
+### Release date: 2022-03-11
+
+#### Added
+  * Added loading spinners for async actions.
+  * Added snackbars for save and delete card actions.
+
+#### Changed
+  * Changed cursor to be pointer while hovering Card (on home page) and enabled buttons.
+  * Other minor improvements in styling.
