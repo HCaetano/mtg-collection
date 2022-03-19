@@ -1,8 +1,11 @@
 .button {
   background-color: #371e30;
   border-radius: 4px;
-  color: white;
   border: none;
+  color: white;
+  display: flex;
+  height: 42px;
+  justify-content: center;
   padding: 12px 16px;
   width: fit-content;
 }
@@ -14,6 +17,16 @@
 .button-position {
   justify-content: center;
   margin-top: 40px;
+}
+
+.card-name-input {
+  padding: 10px;
+  width: 60%;
+}
+
+.card-name-input,
+.card-name-input::placeholder {
+  color: #371e30;
 }
 
 .card-gallery {
@@ -29,13 +42,7 @@
   width: 80%;
 }
 
-.page-container {
-  display: flex;
-  flex-direction: column;
-  position: relative;
-}
-
-.random-card-container {
+.new-card-container {
   align-items: center;
   border: 2px solid #b29bff;
   display: flex;
@@ -46,7 +53,17 @@
   width: 50%;
 }
 
-.random-card-top {
+.new-card-container label {
+  margin: 5px auto;
+}
+
+.page-container {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.random-card-area {
   align-items: center;
   border-bottom: 1px solid #b29bff;
   display: flex;
@@ -56,23 +73,24 @@
   width: 100%;
 }
 
-.random-card-container label {
-  margin: 5px auto;
+.submit-button {
+  font-size: 14px;
+  min-width: 110px;
+  padding: 16px 20px;
 }
 
-.save-button {
+.search-card-area {
+  align-items: center;
+  border-bottom: 1px solid #b29bff;
   display: flex;
-  justify-content: center;
-  font-size: 16px;
-  padding: 16px 20px;
-  width: 110px;
+  justify-content: space-evenly;
+  margin: 10px auto 20px;
+  padding: 10px 10px 20px 10px;
+  width: 100%;
 }
 
 .show-random-card-button {
-  display: flex;
-  height: 42px;
-  justify-content: center;
-  width: 96px;
+  width: 95px;
 }
 
 .title {
