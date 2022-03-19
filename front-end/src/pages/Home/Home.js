@@ -45,6 +45,7 @@ const Home = () => {
       getAllCards();
       setIsLoading(false);
       openSnackbar("Card saved to database");
+      setCard({});
       setRandomCardStatus(false);
     });
   };
