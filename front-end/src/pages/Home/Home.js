@@ -15,7 +15,7 @@ const Home = () => {
   const [cardList, setCardList] = useState([]);
   const [card, setCard] = useState({});
   const [isLoading, setIsLoading] = useState(false);
-  const [randomCardStatus, setRandomCardStatus] = useState(true);
+  const [newCardStatus, setNewCardStatus] = useState(true);
   const options = {
     position: "bottom-left",
     style: {
@@ -46,13 +46,13 @@ const Home = () => {
       setIsLoading(false);
       openSnackbar("Card saved to database");
       setCard({});
-      setRandomCardStatus(false);
+      setNewCardStatus(false);
     });
   };
 
   const findRandomCard = () => {
     setIsLoading(true);
-    setRandomCardStatus(true);
+    setNewCardStatus(true);
     scryFallApi.findRandomCard().then(({ data }) => {
       const randomCard = {
         name: data.name,
@@ -68,7 +68,7 @@ const Home = () => {
 
       setCard({ ...randomCard });
       setIsLoading(false);
-      setRandomCardStatus(false);
+      setNewCardStatus(false);
     });
   };
 
@@ -89,7 +89,7 @@ const Home = () => {
           image: rawCardData.image_uris.normal,
         };
         setCard(newCard);
-        setRandomCardStatus(false);
+        setNewCardStatus(false);
       })
       .catch(() => {
         openSnackbar("Couldn't find a card with this name");
@@ -155,7 +155,7 @@ const Home = () => {
           <div className={styles["button-position"]}>
             <button
               className={classNames(
-                randomCardStatus || !card.name
+                newCardStatus || !card.name
                   ? [
                       styles.button,
                       styles["submit-button"],
@@ -164,7 +164,7 @@ const Home = () => {
                   : [styles.button, styles["submit-button"]]
               )}
               onClick={insertNewCard}
-              disabled={randomCardStatus && !card.name}
+              disabled={newCardStatus && !card.name}
             >
               {isLoading ? (
                 <Watch
