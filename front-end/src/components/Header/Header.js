@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import Logo from "../../assets/planeswalker-logo.png";
+import Logo from "../../assets/spark.png";
 import styles from "./styles.module.css";
 
 const Header = () => (
