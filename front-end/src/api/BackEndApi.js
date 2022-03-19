@@ -1,8 +1,8 @@
-import * as axiosHandler from 'axios';
+import * as axiosHandler from "axios";
 
 const buildAxiosHandler = () => {
   const axios = axiosHandler.create({
-    baseURL: 'http://localhost:8080',
+    baseURL: "http://localhost:8080",
   });
 
   return axios;
@@ -11,13 +11,13 @@ const buildAxiosHandler = () => {
 export const getAllCards = () => {
   const axios = buildAxiosHandler();
 
-  return axios.get('/api/cards');
+  return axios.get("/api/cards");
 };
 
 export const insertNewCard = (card) => {
   const axios = buildAxiosHandler();
 
-  return axios.post('/api/cards', card);
+  return axios.post("/api/cards", card);
 };
 
 export const deleteCard = (id) => {
