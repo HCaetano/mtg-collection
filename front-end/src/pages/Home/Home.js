@@ -27,7 +27,7 @@ const Home = () => {
     },
   };
   const [openSnackbar] = useSnackbar(options);
-  const [nameToBeSearched, setNameToBeSearched] = useState("liliana");
+  const [nameToBeSearched, setNameToBeSearched] = useState("");
 
   const getAllCards = async () => {
     const response = await backEndApi.getAllCards();
