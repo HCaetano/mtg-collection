@@ -1,11 +1,17 @@
-import * as axiosHandler from 'axios';
+import * as axiosHandler from "axios";
 
-const findRandomCard = () => {
+export const findRandomCard = () => {
   const axios = axiosHandler.create({
-    baseURL: 'https://api.scryfall.com',
+    baseURL: "https://api.scryfall.com",
   });
 
-  return axios.get('/cards/random');
+  return axios.get("/cards/random");
 };
 
-export default findRandomCard;
+export const findCardByName = (cardName) => {
+  const axios = axiosHandler.create({
+    baseURL: "https://api.scryfall.com",
+  });
+
+  return axios.get(`/cards/search?q=${cardName}`);
+};
