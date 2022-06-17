@@ -6,7 +6,7 @@ The gif is not the best due to it having its original file size reduced to compl
 
 ## What it does
 
-The application makes requests to the [Scryfall API](https://scryfall.com/docs/api) in order to search for cards that can be saved to the database and then displayed to the user on the app's gallery. The goal is to create an application that will help me keep my Magic: The Gathering collection updated without having to rely on Excel tables or paper notes. 
+The application makes requests to the [Scryfall API](https://scryfall.com/docs/api) in order to search for cards that can be saved to the database and then displayed to the user on the app's gallery. The goal is to create an application that will help me keep my [Magic: The Gathering](https://magic.wizards.com/en) collection updated without having to rely on Excel tables or paper notes. 
 
 So far, the app only fetches, saves, displays and removes individual cards, the collection aspect of it is still upcoming. I've developed a simple RESTful back-end on Spring Boot which has the CRUD operations in place. Recently, I'm putting effort on making the front-end better: I improved the aesthetics of the app, added a search by name feature and added visual cues such as loading spinners and snackbars. For a deeper look on the apps history, please check the [changelog](./CHANGELOG.md).
 
