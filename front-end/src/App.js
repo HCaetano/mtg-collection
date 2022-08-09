@@ -1,7 +1,6 @@
-import React from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Home from "./pages/Home/Home";
-import CardDetails from "./pages/CardDetails/CardDetails";
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import Home from './pages/Home/Home';
+import CardDetails from './pages/CardDetails/CardDetails';
 
 const App = () => (
   <BrowserRouter>
