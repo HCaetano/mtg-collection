@@ -41,7 +41,7 @@ Card.defaultProps = {
 };
 
 Card.propTypes = {
-  content: PropTypes.shapeOf(PropTypes.shape(PropTypes.string)).isRequired,
+  content: PropTypes.shape(PropTypes.shape(PropTypes.string)).isRequired,
   isRandomCard: PropTypes.bool,
 };
 
