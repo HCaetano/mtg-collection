@@ -53,7 +53,7 @@
     ],
     "semi": ["error", "always"],
     "no-trailing-spaces": "error",
-    "no-console": "error",
+    "no-console": "warn",
     "no-unused-vars": [
       "error",
       {
