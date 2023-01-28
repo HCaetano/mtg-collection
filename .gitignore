@@ -8,6 +8,7 @@ mvnw.cmd
 /bin
 !**/src/main/**
 !**/src/test/**
+.DS_STORE
 
 ### STS ###
 .apt_generated
