@@ -1,11 +1,8 @@
-import React from 'react';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import SnackbarProvider from 'react-simple-snackbar';
 import { BrowserRouter } from 'react-router-dom';
 import Card from './Card';
-import Home from 'pages/Home/Home';
-import App from 'App';
 
 describe('Card | component | unit test', () => {
   const IMAGE_URL =
@@ -17,7 +14,7 @@ describe('Card | component | unit test', () => {
   };
 
   test('if Card is rendered in the gallery', () => {
-    const { getByAltText } = render(
+    render(
       <SnackbarProvider>
         <BrowserRouter>
           <Card content={cardContent} />
@@ -25,8 +22,23 @@ describe('Card | component | unit test', () => {
       </SnackbarProvider>
     );
 
-    const cardOnTheGallery = getByAltText(`${cardContent.name} art`);
+    const cardOnTheGallery = screen.getByAltText(`${cardContent.name} art`);
     expect(cardOnTheGallery).toBeVisible();
     expect(cardOnTheGallery).toHaveAttribute('src', IMAGE_URL);
+  });
+
+  test('if clicking on a gallery Card works', async () => {
+    render(
+      <SnackbarProvider>
+        <BrowserRouter>
+          <Card content={cardContent} />
+        </BrowserRouter>
+      </SnackbarProvider>
+    );
+
+    expect(global.window.location.href).toContain('/');
+    const cardOnTheGallery = screen.getByAltText(`${cardContent.name} art`);
+    await userEvent.click(cardOnTheGallery);
+    expect(global.window.location.href).toContain(`/card/${cardContent.id}`);
   });
 });
