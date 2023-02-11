@@ -1,15 +1,15 @@
-import React, { useState, useEffect } from "react";
-import classNames from "classnames";
-import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
-import { useSnackbar } from "react-simple-snackbar";
-import { Watch } from "react-loader-spinner";
-import * as backEndApi from "../../api/BackEndApi";
-import * as scryFallApi from "../../api/ScryFallApi";
-import Card from "../../components/Card/Card";
-import CardList from "../../components/CardList/CardList";
-import Footer from "../../components/Footer/Footer";
-import Header from "../../components/Header/Header";
-import styles from "./styles.module.css";
+import { useEffect, useState } from 'react';
+import classNames from 'classnames';
+import 'react-loader-spinner/dist/loader/css/react-spinner-loader.css';
+import { useSnackbar } from 'react-simple-snackbar';
+import { Watch } from 'react-loader-spinner';
+import * as backEndApi from '../../api/BackEndApi';
+import * as scryFallApi from '../../api/ScryFallApi';
+import Card from '../../components/Card/Card';
+import CardList from '../../components/CardList/CardList';
+import Footer from '../../components/Footer/Footer';
+import Header from '../../components/Header/Header';
+import styles from './styles.module.css';
 
 const Home = () => {
   const [cardList, setCardList] = useState([]);
@@ -17,17 +17,17 @@ const Home = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [newCardStatus, setNewCardStatus] = useState(true);
   const options = {
-    position: "bottom-left",
+    position: 'bottom-left',
     style: {
-      backgroundColor: "#371e30",
-      color: "white",
+      backgroundColor: '#371e30',
+      color: 'white',
     },
     closeStyle: {
-      color: "white",
+      color: 'white',
     },
   };
   const [openSnackbar] = useSnackbar(options);
-  const [nameToBeSearched, setNameToBeSearched] = useState("");
+  const [nameToBeSearched, setNameToBeSearched] = useState('');
 
   const getAllCards = async () => {
     const response = await backEndApi.getAllCards();
@@ -44,7 +44,7 @@ const Home = () => {
     backEndApi.insertNewCard(card).then(() => {
       getAllCards();
       setIsLoading(false);
-      openSnackbar("Card saved to database");
+      openSnackbar('Card saved to database');
       setCard({});
       setNewCardStatus(false);
     });
@@ -102,17 +102,17 @@ const Home = () => {
   };
 
   return (
-    <section className={styles["page-container"]}>
+    <section className={styles['page-container']}>
       <Header />
-      <main className={styles["main-content"]}>
-        <section className={styles["card-gallery"]}>
+      <main className={styles['main-content']}>
+        <section className={styles['card-gallery']}>
           <h1 className={styles.title}>Card gallery</h1>
           <CardList cards={cardList} />
         </section>
-        <section className={styles["new-card-container"]}>
-          <div className={styles["search-card-area"]}>
+        <section className={styles['new-card-container']}>
+          <div className={styles['search-card-area']}>
             <input
-              className={styles["card-name-input"]}
+              className={styles['card-name-input']}
               type="text"
               placeholder="Search a card by its name"
               value={nameToBeSearched}
@@ -121,7 +121,7 @@ const Home = () => {
             <button
               className={classNames(
                 !nameToBeSearched
-                  ? [styles.button, styles["button-disabled"]]
+                  ? [styles.button, styles['button-disabled']]
                   : [styles.button]
               )}
               onClick={findCardByName}
@@ -130,12 +130,12 @@ const Home = () => {
               Search card
             </button>
           </div>
-          <div className={styles["random-card-area"]}>
+          <div className={styles['random-card-area']}>
             <h2>Fetch a random card from ScryFall</h2>
             <button
               className={classNames(
                 styles.button,
-                styles["show-random-card-button"]
+                styles['show-random-card-button']
               )}
               onClick={findRandomCard}
             >
@@ -147,21 +147,21 @@ const Home = () => {
                   width="20"
                 />
               ) : (
-                "Show card"
+                'Show card'
               )}
             </button>
           </div>
           <Card content={card} isRandomCard={true} />
-          <div className={styles["button-position"]}>
+          <div className={styles['button-position']}>
             <button
               className={classNames(
                 newCardStatus || !card.name
                   ? [
                       styles.button,
-                      styles["submit-button"],
-                      styles["button-disabled"],
+                      styles['submit-button'],
+                      styles['button-disabled'],
                     ]
-                  : [styles.button, styles["submit-button"]]
+                  : [styles.button, styles['submit-button']]
               )}
               onClick={insertNewCard}
               disabled={newCardStatus && !card.name}
@@ -174,7 +174,7 @@ const Home = () => {
                   width="20"
                 />
               ) : (
-                "Save"
+                'Save'
               )}
             </button>
           </div>
